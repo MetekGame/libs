@@ -20,10 +20,9 @@ jobs:
         shell: bash
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.2/freebsd-13.2-x86-64.qcow2
         run: |
-            ls -lah
             premake5 gmake2
             gmake config=release -j3
-            gmake -j3
+#            gmake -j3
 
     - uses: actions/upload-artifact@v4.3.1
       with:
