@@ -3,13 +3,17 @@ project "LibLZO"
 	language "C"
 	warnings "Extra"
 
-	targetdir "../../Out/%{cfg.buildcfg}"
+	targetdir "../../Libs/lib/%{cfg.buildcfg}"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
+	postbuildcommands { 
+		"{COPYDIR} %[%{!wks.location}/vendor/lzo/include] %[%{!wks.location}/Libs/include/]"
+	}
+
 	includedirs {
-		"./include",
-		"./src"
+		"%{!wks.location}/vendor/lzo/include",
+		"%{!wks.location}/vendor/lzo/src"
 	}
 
 	vpaths {
@@ -19,15 +23,14 @@ project "LibLZO"
 	}
 
 	files {
-		"src/*.c",
-		"include/*.h",
+		"%{!wks.location}/vendor/lzo/src/*.c",
+		"%{!wks.location}/vendor/lzo/include/*.h",
 	}
 
 	filter "system:Windows"
 		disablewarnings { "4996" }
-		characterset "MBCS"
 		defines { "_MBCS" }
 		flags { "MultiProcessorCompile" }
 
 	filter "system:bsd"
-		buildoptions { "-m32 -fPIC -shared" }
+		buildoptions { "-fPIC -shared" }
