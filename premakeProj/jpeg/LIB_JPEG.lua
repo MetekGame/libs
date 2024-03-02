@@ -8,9 +8,15 @@ project "LibJPEG"
 	location "../../Out"
 
 	filter "system:windows"
-		postbuildcommands { "{COPYFILE} %[%{!wks.location}/vendor/jpeg/*.h] %[%{!cfg.targetdir}/../../include/]" }
+		postbuildcommands {
+			"{MKDIR} %[%{!cfg.targetdir}]",
+			"{COPYFILE} %[%{!wks.location}/vendor/jpeg/*.h] %[%{!cfg.targetdir}/../../include/]"
+		}
 	filter "system:not windows"
-		postbuildcommands { "{COPYFILE} %{!wks.location}/vendor/jpeg/*.h %{!cfg.targetdir}/../../include/" }
+		postbuildcommands {
+			"{MKDIR} %{!cfg.targetdir}",
+			"{COPYFILE} %{!wks.location}/vendor/jpeg/*.h %{!cfg.targetdir}/../../include/"
+		}
 
 	vpaths {
 		["Headers"] = { "**.h" },

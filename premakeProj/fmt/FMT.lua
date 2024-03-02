@@ -8,7 +8,9 @@ project "LibFMT"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
-	postbuildcommands { "{COPYDIR} %[%{!wks.location}/vendor/fmt/include] %[%{!cfg.targetdir}/../../include]" }
+	postbuildcommands { 
+		"{COPYDIR} %[%{!wks.location}/vendor/fmt/include] %[%{!cfg.targetdir}/../../include]"
+	}
 
 	includedirs {
 		"../../vendor/fmt/include/"
