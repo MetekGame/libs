@@ -9,7 +9,7 @@ project "LibJPEG"
 
 	filter "system:windows"
 		postbuildcommands {
-			"{COPYFILE} %[%{!wks.location}/vendor/jpeg/*.h] %[%{!wks.location}/Libs/include/]"
+			"{COPYFILE} %[%{!wks.location}vendor/jpeg/*.h] %[%{!wks.location}Libs/include/]"
 		}
 	filter "system:not windows"
 		postbuildcommands {
