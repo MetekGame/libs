@@ -66,9 +66,9 @@ jobs:
 
     - name: Build Libs
       if: matrix.target == 'FreeBSD' && matrix.mode =='release'
-      uses: cross-platform-actions/action@v0.23.0
+      uses: cross-platform-actions/action@v0.22.0
       with:
-        operating_system: freeBSD
+        operating_system: freebsd
         architecture: x86-64
         version: '13.2'
         shell: bash
@@ -79,9 +79,9 @@ jobs:
 
     - name: Build Libs
       if: matrix.target == 'FreeBSD' && matrix.mode == 'debug'
-      uses: cross-platform-actions/action@v0.23.0
+      uses: cross-platform-actions/action@v0.22.0
       with:
-        operating_system: freeBSD
+        operating_system: freebsd
         architecture: x86-64
         version: '13.2'
         shell: bash
