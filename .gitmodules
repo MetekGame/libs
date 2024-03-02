@@ -7,3 +7,6 @@
 [submodule "vendor/DevIL"]
 	path = vendor/DevIL
 	url = https://github.com/DentonW/DevIL
+[submodule "vendor/argon2"]
+	path = vendor/argon2
+	url = https://github.com/P-H-C/phc-winner-argon2
