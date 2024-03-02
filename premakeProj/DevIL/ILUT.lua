@@ -3,13 +3,17 @@ project "LibILUT"
 	language "C"
 	warnings "Extra"
 
-	targetdir "../../Out/%{cfg.buildcfg}"
+	targetdir "../../Libs/lib/%{cfg.buildcfg}"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
+	postbuildcommands { 
+		"{COPYDIR} %[%{!wks.location}/vendor/DevIL/DevIL/include] %[%{!wks.location}/Libs/include/]"
+	}
+
 	includedirs {
-		"DevIL/src-ILU/include",
-		"DevIL/include"
+		"%{!wks.location}/vendor/DevIL/DevIL/src-ILU/include",
+		"%{!wks.location}/vendor/DevIL/DevIL/include"
 	}
 
 	vpaths {
@@ -19,17 +23,14 @@ project "LibILUT"
 	}
 
 	files {
-		"DevIL/src-ILU/include/**.h",
-		"DevIL/include/**.h",
-		"DevIL/src-ILU/src/**.cpp",
+		"%{!wks.location}/vendor/DevIL/DevIL/src-ILU/include/**.h",
+		"%{!wks.location}/vendor/DevIL/DevIL/include/**.h",
+		"%{!wks.location}/vendor/DevIL/DevIL/src-ILU/src/**.cpp",
 	}
 	defines { "IL_STATIC_LIB", "IL_USE_PRAGMA_LIBS" }
 
 	filter "configurations:Release"
 		defines {"NDEBUG"}
-
-	filter "system:bsd"
-		buildoptions { "-m32" }
 
 	filter "configurations:Debug"
 		symbols "On"
@@ -37,6 +38,5 @@ project "LibILUT"
 
 	filter "system:Windows"
 		disablewarnings { "4996" }
-		characterset "MBCS"
 		defines { "WIN32", "ALLEGRO_MSVC", "_WINDOWS" }
 		flags { "MultiProcessorCompile" }

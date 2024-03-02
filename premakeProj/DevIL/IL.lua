@@ -2,16 +2,23 @@ project "LibIL"
 	kind "StaticLib"
 	language "C"
 	warnings "Extra"
-	characterset "Unicode"
 
-	targetdir "../../Out/%{cfg.buildcfg}"
+	targetdir "../../Libs/lib/%{cfg.buildcfg}"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
+	postbuildcommands { 
+		"{COPYDIR} %[%{!wks.location}/vendor/DevIL/DevIL/include] %[%{!wks.location}/Libs/include/]"
+	}
+
 	includedirs {
-		"DevIL/src-IL/include",
-		"DevIL/include",
-		"../jpeg-9e"
+		"%{!wks.location}/vendor/DevIL/DevIL/src-IL/include",
+		"%{!wks.location}/vendor/DevIL/DevIL/include",
+		"./"
+	}
+
+	externalincludedirs {
+		"%{!wks.location}/vendor/jpeg/"
 	}
 
 	defines { "IL_STATIC_LIB", "JPEGSTATIC", "HAVE_CONFIG_H" }
@@ -23,16 +30,13 @@ project "LibIL"
 	}
 
 	files {
-		"DevIL/src-IL/include/**.h",
-		"DevIL/include/**.h",
-		"DevIL/src-IL/src/**.cpp",
+		"%{!wks.location}/vendor/DevIL/DevIL/src-IL/include/**.h",
+		"%{!wks.location}/vendor/DevIL/DevIL/include/**.h",
+		"%{!wks.location}/vendor/DevIL/DevIL/src-IL/src/**.cpp",
 	}
 
 	filter "configurations:Release"
 		defines { "NDEBUG" }
-
-	filter "system:bsd"
-		buildoptions { "-m32" }
 
 	filter "configurations:Debug"
 		symbols "On"
@@ -40,6 +44,5 @@ project "LibIL"
 	
 	filter "system:Windows"
 		disablewarnings { "4996" }
-		characterset "MBCS"
 		defines { "WIN32", "_WINDOWS" }
 		flags { "MultiProcessorCompile" }

@@ -7,15 +7,6 @@ project "LibJPEG"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
-	filter "system:windows"
-		postbuildcommands {
-			"{COPYFILE} %[%{!wks.location}vendor/jpeg/*.h] %[%{!wks.location}Libs/include/]"
-		}
-	filter "system:not windows"
-		postbuildcommands {
-			"{COPYFILE} %{!wks.location}/vendor/jpeg/*.h %{!wks.location}/Libs/include"
-		}
-
 	vpaths {
 		["Headers"] = { "**.h" },
 		["Sources"] = { "**.c" },
@@ -23,14 +14,14 @@ project "LibJPEG"
 	}
 	
 	files {
-		"../../vendor/jpeg/jaricom.c", "../../vendor/jpeg/jcapimin.c", "../../vendor/jpeg/jcapistd.c", "../../vendor/jpeg/jcarith.c", "../../vendor/jpeg/jccoefct.c", "../../vendor/jpeg/jccolor.c", 
-		"../../vendor/jpeg/jcdctmgr.c", "../../vendor/jpeg/jchuff.c", "../../vendor/jpeg/jcinit.c", "../../vendor/jpeg/jcmainct.c", "../../vendor/jpeg/jcmarker.c", "../../vendor/jpeg/jcmaster.c", 
-		"../../vendor/jpeg/jcomapi.c", "../../vendor/jpeg/jcparam.c", "../../vendor/jpeg/jcprepct.c", "../../vendor/jpeg/jcsample.c", "../../vendor/jpeg/jctrans.c", "../../vendor/jpeg/jdapimin.c", 
-		"../../vendor/jpeg/jdapistd.c", "../../vendor/jpeg/jdarith.c", "../../vendor/jpeg/jdatadst.c", "../../vendor/jpeg/jdatasrc.c", "../../vendor/jpeg/jdcoefct.c", "../../vendor/jpeg/jdcolor.c", 
-		"../../vendor/jpeg/jddctmgr.c", "../../vendor/jpeg/jdhuff.c", "../../vendor/jpeg/jdinput.c", "../../vendor/jpeg/jdmainct.c", "../../vendor/jpeg/jdmarker.c", "../../vendor/jpeg/jdmaster.c", 
-		"../../vendor/jpeg/jdmerge.c", "../../vendor/jpeg/jdpostct.c", "../../vendor/jpeg/jdsample.c", "../../vendor/jpeg/jdtrans.c", "../../vendor/jpeg/jerror.c", "../../vendor/jpeg/jfdctflt.c", 
-		"../../vendor/jpeg/jfdctfst.c", "../../vendor/jpeg/jfdctint.c", "../../vendor/jpeg/jidctflt.c", "../../vendor/jpeg/jidctfst.c", "../../vendor/jpeg/jidctint.c", "../../vendor/jpeg/jmemmgr.c", 
-		"../../vendor/jpeg/jmemnobs.c", "../../vendor/jpeg/jquant1.c", "../../vendor/jpeg/jquant2.c", "../../vendor/jpeg/jutils.c"
+		"%{!wks.location}/vendor/jpeg/jaricom.c", "%{!wks.location}/vendor/jpeg/jcapimin.c", "%{!wks.location}/vendor/jpeg/jcapistd.c", "%{!wks.location}/vendor/jpeg/jcarith.c", "%{!wks.location}/vendor/jpeg/jccoefct.c", "%{!wks.location}/vendor/jpeg/jccolor.c", 
+		"%{!wks.location}/vendor/jpeg/jcdctmgr.c", "%{!wks.location}/vendor/jpeg/jchuff.c", "%{!wks.location}/vendor/jpeg/jcinit.c", "%{!wks.location}/vendor/jpeg/jcmainct.c", "%{!wks.location}/vendor/jpeg/jcmarker.c", "%{!wks.location}/vendor/jpeg/jcmaster.c", 
+		"%{!wks.location}/vendor/jpeg/jcomapi.c", "%{!wks.location}/vendor/jpeg/jcparam.c", "%{!wks.location}/vendor/jpeg/jcprepct.c", "%{!wks.location}/vendor/jpeg/jcsample.c", "%{!wks.location}/vendor/jpeg/jctrans.c", "%{!wks.location}/vendor/jpeg/jdapimin.c", 
+		"%{!wks.location}/vendor/jpeg/jdapistd.c", "%{!wks.location}/vendor/jpeg/jdarith.c", "%{!wks.location}/vendor/jpeg/jdatadst.c", "%{!wks.location}/vendor/jpeg/jdatasrc.c", "%{!wks.location}/vendor/jpeg/jdcoefct.c", "%{!wks.location}/vendor/jpeg/jdcolor.c", 
+		"%{!wks.location}/vendor/jpeg/jddctmgr.c", "%{!wks.location}/vendor/jpeg/jdhuff.c", "%{!wks.location}/vendor/jpeg/jdinput.c", "%{!wks.location}/vendor/jpeg/jdmainct.c", "%{!wks.location}/vendor/jpeg/jdmarker.c", "%{!wks.location}/vendor/jpeg/jdmaster.c", 
+		"%{!wks.location}/vendor/jpeg/jdmerge.c", "%{!wks.location}/vendor/jpeg/jdpostct.c", "%{!wks.location}/vendor/jpeg/jdsample.c", "%{!wks.location}/vendor/jpeg/jdtrans.c", "%{!wks.location}/vendor/jpeg/jerror.c", "%{!wks.location}/vendor/jpeg/jfdctflt.c", 
+		"%{!wks.location}/vendor/jpeg/jfdctfst.c", "%{!wks.location}/vendor/jpeg/jfdctint.c", "%{!wks.location}/vendor/jpeg/jidctflt.c", "%{!wks.location}/vendor/jpeg/jidctfst.c", "%{!wks.location}/vendor/jpeg/jidctint.c", "%{!wks.location}/vendor/jpeg/jmemmgr.c", 
+		"%{!wks.location}/vendor/jpeg/jmemnobs.c", "%{!wks.location}/vendor/jpeg/jquant1.c", "%{!wks.location}/vendor/jpeg/jquant2.c", "%{!wks.location}/vendor/jpeg/jutils.c"
 	}
 
 	filter "configurations:Debug"
@@ -45,3 +36,11 @@ project "LibJPEG"
 		disablewarnings { "4996" }
 		defines { "_LIB", "WIN32", "_CRT_SECURE_NO_WARNINGS" }
 		flags { "MultiProcessorCompile" }
+		postbuildcommands {
+			"{COPYFILE} %[%{!wks.location}vendor/jpeg/*.h] %[%{!wks.location}Libs/include/]"
+		}
+
+	filter "system:not windows"
+		postbuildcommands {
+			"{COPYFILE} %{!wks.location}/vendor/jpeg/*.h %{!wks.location}/Libs/include"
+		}

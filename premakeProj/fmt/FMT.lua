@@ -13,7 +13,7 @@ project "LibFMT"
 	}
 
 	includedirs {
-		"../../vendor/fmt/include/"
+		"%{!wks.location}/vendor/fmt/include/"
 	}
 
 	vpaths {
@@ -23,9 +23,9 @@ project "LibFMT"
 	}
 
 	files {
-		"../../vendor/fmt/include/**.h",
-		"../../vendor/fmt/src/format.cc",
-		"../../vendor/fmt/src/os.cc"
+		"%{!wks.location}/vendor/fmt/include/**.h",
+		"%{!wks.location}/vendor/fmt/src/format.cc",
+		"%{!wks.location}/vendor/fmt/src/os.cc"
 	}
 
 	filter "system:Windows"

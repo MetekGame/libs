@@ -13,8 +13,8 @@ project "LibZeroMQ"
 	postbuildcommands { "{COPYDIR} %[%{!wks.location}/vendor/libzmq/include] %[%{!wks.location}/Libs/include/]" }
 
 	includedirs {
-		"../../vendor/libzmq/include/",
-		"../../vendor/libzmq/",
+		"%{!wks.location}/vendor/libzmq/include/",
+		"%{!wks.location}/vendor/libzmq/",
 		"./"
 	}
 
@@ -25,10 +25,10 @@ project "LibZeroMQ"
 	}
 
 	files {
-		"../../vendor/libzmq/include/**.h",
-		"../../vendor/libzmq/external/sha1/**.h",
-		"../../vendor/libzmq/external/sha1/**.c",
-		"../../vendor/libzmq/include/**.h",
+		"%{!wks.location}/vendor/libzmq/include/**.h",
+		"%{!wks.location}/vendor/libzmq/external/sha1/**.h",
+		"%{!wks.location}/vendor/libzmq/external/sha1/**.c",
+		"%{!wks.location}/vendor/libzmq/include/**.h",
 	}
 
 	files {
@@ -37,67 +37,67 @@ project "LibZeroMQ"
 
 	-- CPP
 	files {
-		"../../vendor/libzmq/src/precompiled.cpp", "../../vendor/libzmq/src/address.cpp", "../../vendor/libzmq/src/channel.cpp", "../../vendor/libzmq/src/client.cpp",
-		"../../vendor/libzmq/src/clock.cpp", "../../vendor/libzmq/src/ctx.cpp", "../../vendor/libzmq/src/curve_mechanism_base.cpp", "../../vendor/libzmq/src/curve_client.cpp",
-		"../../vendor/libzmq/src/curve_server.cpp", "../../vendor/libzmq/src/dealer.cpp", "../../vendor/libzmq/src/devpoll.cpp", "../../vendor/libzmq/src/dgram.cpp",
-		"../../vendor/libzmq/src/dist.cpp", "../../vendor/libzmq/src/endpoint.cpp", "../../vendor/libzmq/src/epoll.cpp", "../../vendor/libzmq/src/err.cpp", "../../vendor/libzmq/src/fq.cpp",
-		"../../vendor/libzmq/src/io_object.cpp", "../../vendor/libzmq/src/io_thread.cpp", "../../vendor/libzmq/src/ip.cpp", "../../vendor/libzmq/src/ipc_address.cpp",
-		"../../vendor/libzmq/src/ipc_connecter.cpp", "../../vendor/libzmq/src/ipc_listener.cpp", "../../vendor/libzmq/src/kqueue.cpp", "../../vendor/libzmq/src/lb.cpp",
-		"../../vendor/libzmq/src/mailbox.cpp", "../../vendor/libzmq/src/mailbox_safe.cpp", "../../vendor/libzmq/src/mechanism.cpp", "../../vendor/libzmq/src/mechanism_base.cpp",
-		"../../vendor/libzmq/src/metadata.cpp", "../../vendor/libzmq/src/msg.cpp", "../../vendor/libzmq/src/mtrie.cpp", "../../vendor/libzmq/src/norm_engine.cpp",
-		"../../vendor/libzmq/src/object.cpp", "../../vendor/libzmq/src/options.cpp", "../../vendor/libzmq/src/own.cpp", "../../vendor/libzmq/src/null_mechanism.cpp",
-		"../../vendor/libzmq/src/pair.cpp", "../../vendor/libzmq/src/peer.cpp", "../../vendor/libzmq/src/pgm_receiver.cpp", "../../vendor/libzmq/src/pgm_sender.cpp",
-		"../../vendor/libzmq/src/pgm_socket.cpp", "../../vendor/libzmq/src/pipe.cpp", "../../vendor/libzmq/src/plain_client.cpp", "../../vendor/libzmq/src/plain_server.cpp",
-		"../../vendor/libzmq/src/poll.cpp", "../../vendor/libzmq/src/poller_base.cpp", "../../vendor/libzmq/src/polling_util.cpp", "../../vendor/libzmq/src/pollset.cpp",
-		"../../vendor/libzmq/src/proxy.cpp", "../../vendor/libzmq/src/pub.cpp", "../../vendor/libzmq/src/pull.cpp", "../../vendor/libzmq/src/push.cpp", "../../vendor/libzmq/src/random.cpp",
-		"../../vendor/libzmq/src/raw_encoder.cpp", "../../vendor/libzmq/src/raw_decoder.cpp", "../../vendor/libzmq/src/raw_engine.cpp", "../../vendor/libzmq/src/reaper.cpp",
-		"../../vendor/libzmq/src/rep.cpp", "../../vendor/libzmq/src/req.cpp", "../../vendor/libzmq/src/router.cpp", "../../vendor/libzmq/src/select.cpp", "../../vendor/libzmq/src/server.cpp",
-		"../../vendor/libzmq/src/session_base.cpp", "../../vendor/libzmq/src/signaler.cpp", "../../vendor/libzmq/src/socket_base.cpp", "../../vendor/libzmq/src/socks.cpp",
-		"../../vendor/libzmq/src/socks_connecter.cpp", "../../vendor/libzmq/src/stream.cpp", "../../vendor/libzmq/src/stream_engine_base.cpp", "../../vendor/libzmq/src/sub.cpp",
-		"../../vendor/libzmq/src/tcp.cpp", "../../vendor/libzmq/src/tcp_address.cpp", "../../vendor/libzmq/src/tcp_connecter.cpp", "../../vendor/libzmq/src/tcp_listener.cpp",
-		"../../vendor/libzmq/src/thread.cpp", "../../vendor/libzmq/src/trie.cpp", "../../vendor/libzmq/src/radix_tree.cpp", "../../vendor/libzmq/src/v1_decoder.cpp", "../../vendor/libzmq/src/v1_encoder.cpp",
-		"../../vendor/libzmq/src/v2_decoder.cpp", "../../vendor/libzmq/src/v2_encoder.cpp", "../../vendor/libzmq/src/v3_1_encoder.cpp", "../../vendor/libzmq/src/xpub.cpp",
-		"../../vendor/libzmq/src/xsub.cpp", "../../vendor/libzmq/src/zmq.cpp", "../../vendor/libzmq/src/zmq_utils.cpp", "../../vendor/libzmq/src/decoder_allocators.cpp", "../../vendor/libzmq/src/socket_poller.cpp",
-		"../../vendor/libzmq/src/timers.cpp", "../../vendor/libzmq/src/radio.cpp", "../../vendor/libzmq/src/dish.cpp", "../../vendor/libzmq/src/udp_engine.cpp","../../vendor/libzmq/src/zap_client.cpp", "../../vendor/libzmq/src/zmtp_engine.cpp",
-		"../../vendor/libzmq/src/udp_address.cpp", "../../vendor/libzmq/src/scatter.cpp", "../../vendor/libzmq/src/gather.cpp", "../../vendor/libzmq/src/ip_resolver.cpp",
+		"%{!wks.location}/vendor/libzmq/src/precompiled.cpp", "%{!wks.location}/vendor/libzmq/src/address.cpp", "%{!wks.location}/vendor/libzmq/src/channel.cpp", "%{!wks.location}/vendor/libzmq/src/client.cpp",
+		"%{!wks.location}/vendor/libzmq/src/clock.cpp", "%{!wks.location}/vendor/libzmq/src/ctx.cpp", "%{!wks.location}/vendor/libzmq/src/curve_mechanism_base.cpp", "%{!wks.location}/vendor/libzmq/src/curve_client.cpp",
+		"%{!wks.location}/vendor/libzmq/src/curve_server.cpp", "%{!wks.location}/vendor/libzmq/src/dealer.cpp", "%{!wks.location}/vendor/libzmq/src/devpoll.cpp", "%{!wks.location}/vendor/libzmq/src/dgram.cpp",
+		"%{!wks.location}/vendor/libzmq/src/dist.cpp", "%{!wks.location}/vendor/libzmq/src/endpoint.cpp", "%{!wks.location}/vendor/libzmq/src/epoll.cpp", "%{!wks.location}/vendor/libzmq/src/err.cpp", "%{!wks.location}/vendor/libzmq/src/fq.cpp",
+		"%{!wks.location}/vendor/libzmq/src/io_object.cpp", "%{!wks.location}/vendor/libzmq/src/io_thread.cpp", "%{!wks.location}/vendor/libzmq/src/ip.cpp", "%{!wks.location}/vendor/libzmq/src/ipc_address.cpp",
+		"%{!wks.location}/vendor/libzmq/src/ipc_connecter.cpp", "%{!wks.location}/vendor/libzmq/src/ipc_listener.cpp", "%{!wks.location}/vendor/libzmq/src/kqueue.cpp", "%{!wks.location}/vendor/libzmq/src/lb.cpp",
+		"%{!wks.location}/vendor/libzmq/src/mailbox.cpp", "%{!wks.location}/vendor/libzmq/src/mailbox_safe.cpp", "%{!wks.location}/vendor/libzmq/src/mechanism.cpp", "%{!wks.location}/vendor/libzmq/src/mechanism_base.cpp",
+		"%{!wks.location}/vendor/libzmq/src/metadata.cpp", "%{!wks.location}/vendor/libzmq/src/msg.cpp", "%{!wks.location}/vendor/libzmq/src/mtrie.cpp", "%{!wks.location}/vendor/libzmq/src/norm_engine.cpp",
+		"%{!wks.location}/vendor/libzmq/src/object.cpp", "%{!wks.location}/vendor/libzmq/src/options.cpp", "%{!wks.location}/vendor/libzmq/src/own.cpp", "%{!wks.location}/vendor/libzmq/src/null_mechanism.cpp",
+		"%{!wks.location}/vendor/libzmq/src/pair.cpp", "%{!wks.location}/vendor/libzmq/src/peer.cpp", "%{!wks.location}/vendor/libzmq/src/pgm_receiver.cpp", "%{!wks.location}/vendor/libzmq/src/pgm_sender.cpp",
+		"%{!wks.location}/vendor/libzmq/src/pgm_socket.cpp", "%{!wks.location}/vendor/libzmq/src/pipe.cpp", "%{!wks.location}/vendor/libzmq/src/plain_client.cpp", "%{!wks.location}/vendor/libzmq/src/plain_server.cpp",
+		"%{!wks.location}/vendor/libzmq/src/poll.cpp", "%{!wks.location}/vendor/libzmq/src/poller_base.cpp", "%{!wks.location}/vendor/libzmq/src/polling_util.cpp", "%{!wks.location}/vendor/libzmq/src/pollset.cpp",
+		"%{!wks.location}/vendor/libzmq/src/proxy.cpp", "%{!wks.location}/vendor/libzmq/src/pub.cpp", "%{!wks.location}/vendor/libzmq/src/pull.cpp", "%{!wks.location}/vendor/libzmq/src/push.cpp", "%{!wks.location}/vendor/libzmq/src/random.cpp",
+		"%{!wks.location}/vendor/libzmq/src/raw_encoder.cpp", "%{!wks.location}/vendor/libzmq/src/raw_decoder.cpp", "%{!wks.location}/vendor/libzmq/src/raw_engine.cpp", "%{!wks.location}/vendor/libzmq/src/reaper.cpp",
+		"%{!wks.location}/vendor/libzmq/src/rep.cpp", "%{!wks.location}/vendor/libzmq/src/req.cpp", "%{!wks.location}/vendor/libzmq/src/router.cpp", "%{!wks.location}/vendor/libzmq/src/select.cpp", "%{!wks.location}/vendor/libzmq/src/server.cpp",
+		"%{!wks.location}/vendor/libzmq/src/session_base.cpp", "%{!wks.location}/vendor/libzmq/src/signaler.cpp", "%{!wks.location}/vendor/libzmq/src/socket_base.cpp", "%{!wks.location}/vendor/libzmq/src/socks.cpp",
+		"%{!wks.location}/vendor/libzmq/src/socks_connecter.cpp", "%{!wks.location}/vendor/libzmq/src/stream.cpp", "%{!wks.location}/vendor/libzmq/src/stream_engine_base.cpp", "%{!wks.location}/vendor/libzmq/src/sub.cpp",
+		"%{!wks.location}/vendor/libzmq/src/tcp.cpp", "%{!wks.location}/vendor/libzmq/src/tcp_address.cpp", "%{!wks.location}/vendor/libzmq/src/tcp_connecter.cpp", "%{!wks.location}/vendor/libzmq/src/tcp_listener.cpp",
+		"%{!wks.location}/vendor/libzmq/src/thread.cpp", "%{!wks.location}/vendor/libzmq/src/trie.cpp", "%{!wks.location}/vendor/libzmq/src/radix_tree.cpp", "%{!wks.location}/vendor/libzmq/src/v1_decoder.cpp", "%{!wks.location}/vendor/libzmq/src/v1_encoder.cpp",
+		"%{!wks.location}/vendor/libzmq/src/v2_decoder.cpp", "%{!wks.location}/vendor/libzmq/src/v2_encoder.cpp", "%{!wks.location}/vendor/libzmq/src/v3_1_encoder.cpp", "%{!wks.location}/vendor/libzmq/src/xpub.cpp",
+		"%{!wks.location}/vendor/libzmq/src/xsub.cpp", "%{!wks.location}/vendor/libzmq/src/zmq.cpp", "%{!wks.location}/vendor/libzmq/src/zmq_utils.cpp", "%{!wks.location}/vendor/libzmq/src/decoder_allocators.cpp", "%{!wks.location}/vendor/libzmq/src/socket_poller.cpp",
+		"%{!wks.location}/vendor/libzmq/src/timers.cpp", "%{!wks.location}/vendor/libzmq/src/radio.cpp", "%{!wks.location}/vendor/libzmq/src/dish.cpp", "%{!wks.location}/vendor/libzmq/src/udp_engine.cpp","%{!wks.location}/vendor/libzmq/src/zap_client.cpp", "%{!wks.location}/vendor/libzmq/src/zmtp_engine.cpp",
+		"%{!wks.location}/vendor/libzmq/src/udp_address.cpp", "%{!wks.location}/vendor/libzmq/src/scatter.cpp", "%{!wks.location}/vendor/libzmq/src/gather.cpp", "%{!wks.location}/vendor/libzmq/src/ip_resolver.cpp",
 	}
 
 	-- HPP
 	files {
-		"../../vendor/libzmq/src/address.hpp", "../../vendor/libzmq/src/array.hpp", "../../vendor/libzmq/src/atomic_counter.hpp",
-		"../../vendor/libzmq/src/atomic_ptr.hpp", "../../vendor/libzmq/src/blob.hpp", "../../vendor/libzmq/src/channel.hpp", "../../vendor/libzmq/src/client.hpp",  "../../vendor/libzmq/src/config.hpp",
-		"../../vendor/libzmq/src/clock.hpp", "../../vendor/libzmq/src/command.hpp", "../../vendor/libzmq/src/compat.hpp", "../../vendor/libzmq/src/condition_variable.hpp",
-		"../../vendor/libzmq/src/ctx.hpp", "../../vendor/libzmq/src/curve_client.hpp", "../../vendor/libzmq/src/curve_client_tools.hpp",
-		"../../vendor/libzmq/src/curve_mechanism_base.hpp", "../../vendor/libzmq/src/curve_server.hpp", "../../vendor/libzmq/src/dbuffer.hpp", "../../vendor/libzmq/src/dealer.hpp",
-		"../../vendor/libzmq/src/decoder.hpp", "../../vendor/libzmq/src/decoder_allocators.hpp", "../../vendor/libzmq/src/devpoll.hpp", "../../vendor/libzmq/src/dgram.hpp",
-		"../../vendor/libzmq/src/dish.hpp", "../../vendor/libzmq/src/dist.hpp", "../../vendor/libzmq/src/encoder.hpp", "../../vendor/libzmq/src/endpoint.hpp", "../../vendor/libzmq/src/epoll.hpp",
-		"../../vendor/libzmq/src/err.hpp", "../../vendor/libzmq/src/fd.hpp", "../../vendor/libzmq/src/fq.hpp", "../../vendor/libzmq/src/gather.hpp", "../../vendor/libzmq/src/generic_mtrie.hpp",
-		"../../vendor/libzmq/src/generic_mtrie_impl.hpp", "../../vendor/libzmq/src/gssapi_client.hpp", "../../vendor/libzmq/src/gssapi_mechanism_base.hpp",
-		"../../vendor/libzmq/src/gssapi_server.hpp", "../../vendor/libzmq/src/i_decoder.hpp", "../../vendor/libzmq/src/i_encoder.hpp", "../../vendor/libzmq/src/i_engine.hpp",
-		"../../vendor/libzmq/src/i_mailbox.hpp", "../../vendor/libzmq/src/i_poll_events.hpp", "../../vendor/libzmq/src/io_object.hpp", "../../vendor/libzmq/src/io_thread.hpp",
-		"../../vendor/libzmq/src/ip.hpp", "../../vendor/libzmq/src/ipc_address.hpp", "../../vendor/libzmq/src/ipc_connecter.hpp", "../../vendor/libzmq/src/ipc_listener.hpp",
-		"../../vendor/libzmq/src/kqueue.hpp", "../../vendor/libzmq/src/lb.hpp", "../../vendor/libzmq/src/likely.hpp", "../../vendor/libzmq/src/macros.hpp", "../../vendor/libzmq/src/mailbox.hpp",
-		"../../vendor/libzmq/src/mailbox_safe.hpp", "../../vendor/libzmq/src/mechanism.hpp", "../../vendor/libzmq/src/mechanism_base.hpp", "../../vendor/libzmq/src/metadata.hpp",
-		"../../vendor/libzmq/src/msg.hpp", "../../vendor/libzmq/src/mtrie.hpp", "../../vendor/libzmq/src/mutex.hpp", "../../vendor/libzmq/src/norm_engine.hpp", "../../vendor/libzmq/src/null_mechanism.hpp",
-		"../../vendor/libzmq/src/object.hpp", "../../vendor/libzmq/src/options.hpp", "../../vendor/libzmq/src/own.hpp", "../../vendor/libzmq/src/pair.hpp", "../../vendor/libzmq/src/peer.hpp",
-		"../../vendor/libzmq/src/pgm_receiver.hpp", "../../vendor/libzmq/src/pgm_sender.hpp", "../../vendor/libzmq/src/pgm_socket.hpp", "../../vendor/libzmq/src/pipe.hpp",
-		"../../vendor/libzmq/src/plain_client.hpp", "../../vendor/libzmq/src/plain_common.hpp", "../../vendor/libzmq/src/plain_server.hpp", "../../vendor/libzmq/src/poll.hpp",
-		"../../vendor/libzmq/src/poller.hpp", "../../vendor/libzmq/src/poller_base.hpp", "../../vendor/libzmq/src/polling_util.hpp", "../../vendor/libzmq/src/pollset.hpp",
-		"../../vendor/libzmq/src/precompiled.hpp", "../../vendor/libzmq/src/proxy.hpp", "../../vendor/libzmq/src/pub.hpp", "../../vendor/libzmq/src/pull.hpp", "../../vendor/libzmq/src/push.hpp",
-		"../../vendor/libzmq/src/radio.hpp", "../../vendor/libzmq/src/random.hpp", "../../vendor/libzmq/src/raw_decoder.hpp", "../../vendor/libzmq/src/raw_encoder.hpp",
-		"../../vendor/libzmq/src/raw_engine.hpp", "../../vendor/libzmq/src/reaper.hpp", "../../vendor/libzmq/src/rep.hpp", "../../vendor/libzmq/src/req.hpp", "../../vendor/libzmq/src/router.hpp",
-		"../../vendor/libzmq/src/scatter.hpp", "../../vendor/libzmq/src/secure_allocator.hpp", "../../vendor/libzmq/src/select.hpp", "../../vendor/libzmq/src/server.hpp",
-		"../../vendor/libzmq/src/session_base.hpp", "../../vendor/libzmq/src/signaler.hpp", "../../vendor/libzmq/src/socket_base.hpp", "../../vendor/libzmq/src/socket_poller.hpp",
-		"../../vendor/libzmq/src/socks.hpp", "../../vendor/libzmq/src/socks_connecter.hpp", "../../vendor/libzmq/src/stdint.hpp", "../../vendor/libzmq/src/stream.hpp",
-		"../../vendor/libzmq/src/stream_engine_base.hpp", "../../vendor/libzmq/src/stream_connecter_base.hpp", "../../vendor/libzmq/src/stream_connecter_base.cpp",
-		"../../vendor/libzmq/src/stream_listener_base.hpp", "../../vendor/libzmq/src/stream_listener_base.cpp", "../../vendor/libzmq/src/sub.hpp", "../../vendor/libzmq/src/tcp.hpp",
-		"../../vendor/libzmq/src/tcp_address.hpp", "../../vendor/libzmq/src/tcp_connecter.hpp", "../../vendor/libzmq/src/tcp_listener.hpp", "../../vendor/libzmq/src/thread.hpp",
-		"../../vendor/libzmq/src/timers.hpp", "../../vendor/libzmq/src/tipc_address.hpp", "../../vendor/libzmq/src/tipc_connecter.hpp", "../../vendor/libzmq/src/tipc_listener.hpp",
-		"../../vendor/libzmq/src/trie.hpp", "../../vendor/libzmq/src/udp_address.hpp", "../../vendor/libzmq/src/udp_engine.hpp", "../../vendor/libzmq/src/v1_decoder.hpp",
-		"../../vendor/libzmq/src/v1_encoder.hpp", "../../vendor/libzmq/src/v2_decoder.hpp", "../../vendor/libzmq/src/v2_encoder.hpp", "../../vendor/libzmq/src/v3_1_encoder.hpp",
-		"../../vendor/libzmq/src/v2_protocol.hpp", "../../vendor/libzmq/src/vmci.hpp", "../../vendor/libzmq/src/vmci_address.hpp", "../../vendor/libzmq/src/vmci_connecter.hpp", "../../vendor/libzmq/src/vmci_listener.hpp",
-		"../../vendor/libzmq/src/wire.hpp", "../../vendor/libzmq/src/xpub.hpp", "../../vendor/libzmq/src/xsub.hpp", "../../vendor/libzmq/src/ypipe.hpp", "../../vendor/libzmq/src/ypipe_base.hpp", "../../vendor/libzmq/src/ypipe_conflate.hpp",
-		"../../vendor/libzmq/src/yqueue.hpp", "../../vendor/libzmq/src/zap_client.hpp", "../../vendor/libzmq/src/zmtp_engine.hpp"
+		"%{!wks.location}/vendor/libzmq/src/address.hpp", "%{!wks.location}/vendor/libzmq/src/array.hpp", "%{!wks.location}/vendor/libzmq/src/atomic_counter.hpp",
+		"%{!wks.location}/vendor/libzmq/src/atomic_ptr.hpp", "%{!wks.location}/vendor/libzmq/src/blob.hpp", "%{!wks.location}/vendor/libzmq/src/channel.hpp", "%{!wks.location}/vendor/libzmq/src/client.hpp",  "%{!wks.location}/vendor/libzmq/src/config.hpp",
+		"%{!wks.location}/vendor/libzmq/src/clock.hpp", "%{!wks.location}/vendor/libzmq/src/command.hpp", "%{!wks.location}/vendor/libzmq/src/compat.hpp", "%{!wks.location}/vendor/libzmq/src/condition_variable.hpp",
+		"%{!wks.location}/vendor/libzmq/src/ctx.hpp", "%{!wks.location}/vendor/libzmq/src/curve_client.hpp", "%{!wks.location}/vendor/libzmq/src/curve_client_tools.hpp",
+		"%{!wks.location}/vendor/libzmq/src/curve_mechanism_base.hpp", "%{!wks.location}/vendor/libzmq/src/curve_server.hpp", "%{!wks.location}/vendor/libzmq/src/dbuffer.hpp", "%{!wks.location}/vendor/libzmq/src/dealer.hpp",
+		"%{!wks.location}/vendor/libzmq/src/decoder.hpp", "%{!wks.location}/vendor/libzmq/src/decoder_allocators.hpp", "%{!wks.location}/vendor/libzmq/src/devpoll.hpp", "%{!wks.location}/vendor/libzmq/src/dgram.hpp",
+		"%{!wks.location}/vendor/libzmq/src/dish.hpp", "%{!wks.location}/vendor/libzmq/src/dist.hpp", "%{!wks.location}/vendor/libzmq/src/encoder.hpp", "%{!wks.location}/vendor/libzmq/src/endpoint.hpp", "%{!wks.location}/vendor/libzmq/src/epoll.hpp",
+		"%{!wks.location}/vendor/libzmq/src/err.hpp", "%{!wks.location}/vendor/libzmq/src/fd.hpp", "%{!wks.location}/vendor/libzmq/src/fq.hpp", "%{!wks.location}/vendor/libzmq/src/gather.hpp", "%{!wks.location}/vendor/libzmq/src/generic_mtrie.hpp",
+		"%{!wks.location}/vendor/libzmq/src/generic_mtrie_impl.hpp", "%{!wks.location}/vendor/libzmq/src/gssapi_client.hpp", "%{!wks.location}/vendor/libzmq/src/gssapi_mechanism_base.hpp",
+		"%{!wks.location}/vendor/libzmq/src/gssapi_server.hpp", "%{!wks.location}/vendor/libzmq/src/i_decoder.hpp", "%{!wks.location}/vendor/libzmq/src/i_encoder.hpp", "%{!wks.location}/vendor/libzmq/src/i_engine.hpp",
+		"%{!wks.location}/vendor/libzmq/src/i_mailbox.hpp", "%{!wks.location}/vendor/libzmq/src/i_poll_events.hpp", "%{!wks.location}/vendor/libzmq/src/io_object.hpp", "%{!wks.location}/vendor/libzmq/src/io_thread.hpp",
+		"%{!wks.location}/vendor/libzmq/src/ip.hpp", "%{!wks.location}/vendor/libzmq/src/ipc_address.hpp", "%{!wks.location}/vendor/libzmq/src/ipc_connecter.hpp", "%{!wks.location}/vendor/libzmq/src/ipc_listener.hpp",
+		"%{!wks.location}/vendor/libzmq/src/kqueue.hpp", "%{!wks.location}/vendor/libzmq/src/lb.hpp", "%{!wks.location}/vendor/libzmq/src/likely.hpp", "%{!wks.location}/vendor/libzmq/src/macros.hpp", "%{!wks.location}/vendor/libzmq/src/mailbox.hpp",
+		"%{!wks.location}/vendor/libzmq/src/mailbox_safe.hpp", "%{!wks.location}/vendor/libzmq/src/mechanism.hpp", "%{!wks.location}/vendor/libzmq/src/mechanism_base.hpp", "%{!wks.location}/vendor/libzmq/src/metadata.hpp",
+		"%{!wks.location}/vendor/libzmq/src/msg.hpp", "%{!wks.location}/vendor/libzmq/src/mtrie.hpp", "%{!wks.location}/vendor/libzmq/src/mutex.hpp", "%{!wks.location}/vendor/libzmq/src/norm_engine.hpp", "%{!wks.location}/vendor/libzmq/src/null_mechanism.hpp",
+		"%{!wks.location}/vendor/libzmq/src/object.hpp", "%{!wks.location}/vendor/libzmq/src/options.hpp", "%{!wks.location}/vendor/libzmq/src/own.hpp", "%{!wks.location}/vendor/libzmq/src/pair.hpp", "%{!wks.location}/vendor/libzmq/src/peer.hpp",
+		"%{!wks.location}/vendor/libzmq/src/pgm_receiver.hpp", "%{!wks.location}/vendor/libzmq/src/pgm_sender.hpp", "%{!wks.location}/vendor/libzmq/src/pgm_socket.hpp", "%{!wks.location}/vendor/libzmq/src/pipe.hpp",
+		"%{!wks.location}/vendor/libzmq/src/plain_client.hpp", "%{!wks.location}/vendor/libzmq/src/plain_common.hpp", "%{!wks.location}/vendor/libzmq/src/plain_server.hpp", "%{!wks.location}/vendor/libzmq/src/poll.hpp",
+		"%{!wks.location}/vendor/libzmq/src/poller.hpp", "%{!wks.location}/vendor/libzmq/src/poller_base.hpp", "%{!wks.location}/vendor/libzmq/src/polling_util.hpp", "%{!wks.location}/vendor/libzmq/src/pollset.hpp",
+		"%{!wks.location}/vendor/libzmq/src/precompiled.hpp", "%{!wks.location}/vendor/libzmq/src/proxy.hpp", "%{!wks.location}/vendor/libzmq/src/pub.hpp", "%{!wks.location}/vendor/libzmq/src/pull.hpp", "%{!wks.location}/vendor/libzmq/src/push.hpp",
+		"%{!wks.location}/vendor/libzmq/src/radio.hpp", "%{!wks.location}/vendor/libzmq/src/random.hpp", "%{!wks.location}/vendor/libzmq/src/raw_decoder.hpp", "%{!wks.location}/vendor/libzmq/src/raw_encoder.hpp",
+		"%{!wks.location}/vendor/libzmq/src/raw_engine.hpp", "%{!wks.location}/vendor/libzmq/src/reaper.hpp", "%{!wks.location}/vendor/libzmq/src/rep.hpp", "%{!wks.location}/vendor/libzmq/src/req.hpp", "%{!wks.location}/vendor/libzmq/src/router.hpp",
+		"%{!wks.location}/vendor/libzmq/src/scatter.hpp", "%{!wks.location}/vendor/libzmq/src/secure_allocator.hpp", "%{!wks.location}/vendor/libzmq/src/select.hpp", "%{!wks.location}/vendor/libzmq/src/server.hpp",
+		"%{!wks.location}/vendor/libzmq/src/session_base.hpp", "%{!wks.location}/vendor/libzmq/src/signaler.hpp", "%{!wks.location}/vendor/libzmq/src/socket_base.hpp", "%{!wks.location}/vendor/libzmq/src/socket_poller.hpp",
+		"%{!wks.location}/vendor/libzmq/src/socks.hpp", "%{!wks.location}/vendor/libzmq/src/socks_connecter.hpp", "%{!wks.location}/vendor/libzmq/src/stdint.hpp", "%{!wks.location}/vendor/libzmq/src/stream.hpp",
+		"%{!wks.location}/vendor/libzmq/src/stream_engine_base.hpp", "%{!wks.location}/vendor/libzmq/src/stream_connecter_base.hpp", "%{!wks.location}/vendor/libzmq/src/stream_connecter_base.cpp",
+		"%{!wks.location}/vendor/libzmq/src/stream_listener_base.hpp", "%{!wks.location}/vendor/libzmq/src/stream_listener_base.cpp", "%{!wks.location}/vendor/libzmq/src/sub.hpp", "%{!wks.location}/vendor/libzmq/src/tcp.hpp",
+		"%{!wks.location}/vendor/libzmq/src/tcp_address.hpp", "%{!wks.location}/vendor/libzmq/src/tcp_connecter.hpp", "%{!wks.location}/vendor/libzmq/src/tcp_listener.hpp", "%{!wks.location}/vendor/libzmq/src/thread.hpp",
+		"%{!wks.location}/vendor/libzmq/src/timers.hpp", "%{!wks.location}/vendor/libzmq/src/tipc_address.hpp", "%{!wks.location}/vendor/libzmq/src/tipc_connecter.hpp", "%{!wks.location}/vendor/libzmq/src/tipc_listener.hpp",
+		"%{!wks.location}/vendor/libzmq/src/trie.hpp", "%{!wks.location}/vendor/libzmq/src/udp_address.hpp", "%{!wks.location}/vendor/libzmq/src/udp_engine.hpp", "%{!wks.location}/vendor/libzmq/src/v1_decoder.hpp",
+		"%{!wks.location}/vendor/libzmq/src/v1_encoder.hpp", "%{!wks.location}/vendor/libzmq/src/v2_decoder.hpp", "%{!wks.location}/vendor/libzmq/src/v2_encoder.hpp", "%{!wks.location}/vendor/libzmq/src/v3_1_encoder.hpp",
+		"%{!wks.location}/vendor/libzmq/src/v2_protocol.hpp", "%{!wks.location}/vendor/libzmq/src/vmci.hpp", "%{!wks.location}/vendor/libzmq/src/vmci_address.hpp", "%{!wks.location}/vendor/libzmq/src/vmci_connecter.hpp", "%{!wks.location}/vendor/libzmq/src/vmci_listener.hpp",
+		"%{!wks.location}/vendor/libzmq/src/wire.hpp", "%{!wks.location}/vendor/libzmq/src/xpub.hpp", "%{!wks.location}/vendor/libzmq/src/xsub.hpp", "%{!wks.location}/vendor/libzmq/src/ypipe.hpp", "%{!wks.location}/vendor/libzmq/src/ypipe_base.hpp", "%{!wks.location}/vendor/libzmq/src/ypipe_conflate.hpp",
+		"%{!wks.location}/vendor/libzmq/src/yqueue.hpp", "%{!wks.location}/vendor/libzmq/src/zap_client.hpp", "%{!wks.location}/vendor/libzmq/src/zmtp_engine.hpp"
 	}
 
 	filter "configurations:Release"
@@ -112,7 +112,7 @@ project "LibZeroMQ"
 		disablewarnings { "4221" }
 		flags { "MultiProcessorCompile" }
 		files {
-			"../../vendor/libzmq/../../vendor/libzmq/src/windows.hpp",
-			"../../vendor/libzmq/external/wepoll/**.h",
-			"../../vendor/libzmq/external/wepoll/**.c",
+			"%{!wks.location}/vendor/libzmq/%{!wks.location}/vendor/libzmq/src/windows.hpp",
+			"%{!wks.location}/vendor/libzmq/external/wepoll/**.h",
+			"%{!wks.location}/vendor/libzmq/external/wepoll/**.c",
 		}

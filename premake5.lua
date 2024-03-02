@@ -67,4 +67,6 @@ workspace "Metek Game libs"
 		include "/premakeProj/libzmq/LibZeroMQ.lua"
 
 	group "External/DevIL"
-		--include "/vendor-shared/DevIL-1.8.0/IL.lua"
+		include "/premakeProj/DevIL/IL.lua"
+		--include "/premakeProj/DevIL/ILU.lua"
+		--include "/premakeProj/DevIL/ILUT.lua"
