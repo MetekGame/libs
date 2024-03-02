@@ -5,14 +5,18 @@ project "LibSpdLog"
 	warnings "Extra"
 	staticruntime "on"
 
-	targetdir "../../Out/%{cfg.buildcfg}"
+	targetdir "../../Libs/lib/%{cfg.buildcfg}"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
 	defines { "SPDLOG_COMPILED_LIB", "SPDLOG_FMT_EXTERNAL" }
 
+	postbuildcommands { 
+		"{COPYDIR} %[%{!wks.location}/vendor/spdlog/include] %[%{!wks.location}/Libs/include/]",
+	}
+
 	includedirs {
-		"./include/"
+		"%{!wks.location}/vendor/spdlog/include/"
 	}
 
 	vpaths {
@@ -22,16 +26,16 @@ project "LibSpdLog"
 	}
 
 	externalincludedirs { 
-		"../../vendor-shared/fmt-10.1.1/include",
+		"%{!wks.location}/vendor/fmt/include/"
 	}
 
 	files {
-		"include/**.h",
-		"src/**.cpp",
+		"%{!wks.location}/vendor/spdlog/include/**.h",
+		"%{!wks.location}/vendor/spdlog/src/**.cpp",
 	}
 
 	removefiles {
-		"src/bundled_fmtlib_format.cpp",
+		"%{!wks.location}/vendor/spdlog/src/bundled_fmtlib_format.cpp",
 	}
 
 	filter "system:Windows"

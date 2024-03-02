@@ -7,7 +7,7 @@ workspace "Metek Game libs"
 	toolset "clang"
 
 	--Lib defines
-	defines { "QUILL_FMT_EXTERNAL", "QUILL_NO_EXCEPTIONS", "ZMQ_STATIC" }
+	defines { "ZMQ_STATIC" }
 	defines { "CRYPTOPP_DISABLE_MIXED_ASM", "CRYPTOPP_DISABLE_SHANI", "CRYPTOPP_DISABLE_AESNI" }
 
 	postbuildcommands {
@@ -63,7 +63,7 @@ workspace "Metek Game libs"
 		include "/premakeProj/mariadb-connector-c/MARIA_DB_CONNECTOR.lua"
 		include "/premakeProj/lzo/LIB_LZO.lua"
 		include "/premakeProj/fmt/FMT.lua"
-		--include "/vendor-shared/spdlog-1.12.0/SPDLOG.lua"
+		include "/premakeProj/spdlog/SPDLOG.lua"
 		include "/premakeProj/libzmq/LibZeroMQ.lua"
 
 	group "External/DevIL"
