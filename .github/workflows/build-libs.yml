@@ -35,13 +35,13 @@ jobs:
         #- os: macos-12
         #  name: macOS 12
         #  target: macOS
-        - os: macos-12
-          name: macOS 12 - FreeBSD 13.2
+        - os: ubuntu-22.04
+          name: FreeBSD 13.2
           mode: release
           target: FreeBSD
 
-        - os: macos-12
-          name: macOS 12 - FreeBSD 13.2
+        - os: ubuntu-22.04
+          name: FreeBSD 13.2
           mode: debug
           target: FreeBSD
 
@@ -66,7 +66,7 @@ jobs:
 
     - name: Build Libs
       if: matrix.target == 'FreeBSD' && matrix.mode =='release'
-      uses: cross-platform-actions/action@v0.22.0
+      uses: cross-platform-actions/action@v0.23.0
       with:
         operating_system: freebsd
         architecture: x86-64
@@ -79,7 +79,7 @@ jobs:
 
     - name: Build Libs
       if: matrix.target == 'FreeBSD' && matrix.mode == 'debug'
-      uses: cross-platform-actions/action@v0.22.0
+      uses: cross-platform-actions/action@v0.23.0
       with:
         operating_system: freebsd
         architecture: x86-64
@@ -105,6 +105,6 @@ jobs:
 
     - uses: actions/upload-artifact@v4.3.1
       with:
-        name: Libs - ${{ matrix.name }} (${{ matrix.target }}))
+        name: Libs - ${{ matrix.name }} (${{ matrix.mode }})
         path: |
           Libs
