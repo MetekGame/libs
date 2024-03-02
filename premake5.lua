@@ -42,6 +42,12 @@ workspace "Metek Game libs"
 		defines { "_MBCS", "WIN32", "__WIN32__", "_WIN32" }
 		buildoptions { "/Zc:__cplusplus" }
 
+
+	filter "system:not windows"
+	postbuildcommands {
+		"{MKDIR} %{!wks.location}/Libs/include",
+	}
+
 	if os.target() == "windows" then
 		disablewarnings {
 			"4100", --  unreferenced formal parameter
