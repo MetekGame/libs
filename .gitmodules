@@ -1,0 +1,9 @@
+[submodule "vendor/libzmq"]
+	path = vendor/libzmq
+	url = https://github.com/zeromq/libzmq
+[submodule "vendor/fmt"]
+	path = vendor/fmt
+	url = https://github.com/fmtlib/fmt
+[submodule "vendor/DevIL"]
+	path = vendor/DevIL
+	url = https://github.com/DentonW/DevIL

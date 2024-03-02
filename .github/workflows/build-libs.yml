@@ -1,0 +1,110 @@
+name: Build libs
+
+on:
+  # Enable manual run
+  workflow_dispatch:
+
+jobs:
+  build-libs:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+        - os: windows-2019
+          name: Windows 2019
+          target: Windows
+          mode: release
+
+        - os: windows-2019
+          name: Windows 2019
+          target: Windows
+          mode: debug
+  
+        - os: windows-2022
+          name: Windows 2022
+          target: Windows
+          mode: release
+
+        - os: windows-2022
+          name: Windows 2022
+          target: Windows
+          mode: debug
+
+        #- os: ubuntu-22.04
+        #  name: Ubuntu 22.04
+        #- os: macos-12
+        #  name: macOS 12
+        #  target: macOS
+        - os: macos-12
+          name: macOS 12 - FreeBSD 13.2
+          mode: release
+          target: FreeBSD
+
+        - os: macos-12
+          name: macOS 12 - FreeBSD 13.2
+          mode: debug
+          target: FreeBSD
+
+    steps:
+    - uses: actions/checkout@v4.1.1
+      name: Checkout
+      with:
+        submodules: true
+
+
+    - name: Add MSBuild to PATH
+      if: matrix.target == 'Windows'
+      uses: microsoft/setup-msbuild@v2
+      with:
+          msbuild-architecture: x86
+
+    - name: Generate project
+      if: matrix.target == 'Windows'
+      shell: cmd
+      run: |
+        Tools\Windows\premake5 vs2022
+
+    - name: Build Libs
+      if: matrix.target == 'FreeBSD' && matrix.mode =='release'
+      uses: cross-platform-actions/action@v0.23.0
+      with:
+        operating_system: freeBSD
+        architecture: x86-64
+        version: '13.2'
+        shell: bash
+        image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.2/freebsd-13.2-x86-64.qcow2
+        run: |
+            premake5 gmake2
+            gmake config=release -j3
+
+    - name: Build Libs
+      if: matrix.target == 'FreeBSD' && matrix.mode == 'debug'
+      uses: cross-platform-actions/action@v0.23.0
+      with:
+        operating_system: freeBSD
+        architecture: x86-64
+        version: '13.2'
+        shell: bash
+        image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.2/freebsd-13.2-x86-64.qcow2
+        run: |
+            premake5 gmake2
+            gmake -j3
+
+
+    - name: Build Libs
+      if: matrix.target == 'Windows' && matrix.mode == 'debug'
+      # Add additional options to the MSBuild command line here (like platform or verbosity level).
+      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
+      run: msbuild . /t:Metek-UI /m /p:Configuration=Debug
+
+    - name: Build Libs
+      if: matrix.target == 'Windows' && matrix.mode == 'release'
+      # Add additional options to the MSBuild command line here (like platform or verbosity level).
+      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
+      run: msbuild . /t:Metek-UI /m /p:Configuration=Release
+
+    - uses: actions/upload-artifact@v4.3.1
+      with:
+        name: Libs - ${{ matrix.name }} (${{ matrix.target }}))
+        path: |
+          Libs
