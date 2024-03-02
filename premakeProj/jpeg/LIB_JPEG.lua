@@ -7,7 +7,10 @@ project "LibJPEG"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
-	postbuildcommands { "{COPYFILE} %[%{!wks.location}/vendor/jpeg/*.h] %[%{!cfg.targetdir}/../include/]" }
+	filter "system:windows"
+		postbuildcommands { "{COPYFILE} %[%{!wks.location}/vendor/jpeg/*.h] %[%{!cfg.targetdir}/../include/]" }
+	filter "system:not windows"
+		postbuildcommands { "{COPYFILE} %{!wks.location}/vendor/jpeg/*.h %{!cfg.targetdir}/../include/" }
 
 	vpaths {
 		["Headers"] = { "**.h" },
