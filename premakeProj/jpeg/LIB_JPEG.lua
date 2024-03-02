@@ -9,11 +9,11 @@ project "LibJPEG"
 
 	filter "system:windows"
 		postbuildcommands {
-			"{COPYFILE} %[%{!wks.location}/vendor/jpeg/*.h] %[%{!cfg.targetdir}/../../include/]"
+			"{COPYFILE} %[%{!wks.location}/vendor/jpeg/*.h] %[%{!wks.location}/Libs/include/]"
 		}
 	filter "system:not windows"
 		postbuildcommands {
-			"{COPYFILE} %{!wks.location}/vendor/jpeg/*.h %{!cfg.targetdir}/../../include/"
+			"{COPYFILE} %{!wks.location}/vendor/jpeg/*.h %{!wks.location}/Libs/include"
 		}
 
 	vpaths {

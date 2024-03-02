@@ -9,7 +9,7 @@ project "LibFMT"
 	location "../../Out"
 
 	postbuildcommands { 
-		"{COPYDIR} %[%{!wks.location}/vendor/fmt/include] %[%{!cfg.targetdir}/../../include]"
+		"{COPYDIR} %[%{!wks.location}/vendor/fmt/include] %[%{!wks.location}/Libs/include/]"
 	}
 
 	includedirs {
