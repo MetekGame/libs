@@ -96,6 +96,8 @@ project "LibMariaDB-Connector"
 		}
 		postbuildcommands {
 			"{COPYFILE} %[%{!wks.location}vendor/mariadb-connector-c/include/*.h] %[%{!wks.location}Libs/include/]",
+			"{MKDIR} %{!wks.location}/Libs/include/mariadb",
+			"{MKDIR} %{!wks.location}/Libs/include/mysql",
 			"{COPYDIR} %[%{!wks.location}/vendor/mariadb-connector-c/include/mariadb] %[%{!wks.location}/Libs/include/mariadb]",
 			"{COPYDIR} %[%{!wks.location}/vendor/mariadb-connector-c/include/mysql] %[%{!wks.location}/Libs/include/mysql]"
 		}

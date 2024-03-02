@@ -10,9 +10,9 @@ workspace "Metek Game libs"
 	defines { "ZMQ_STATIC" }
 	defines { "CRYPTOPP_DISABLE_MIXED_ASM", "CRYPTOPP_DISABLE_SHANI", "CRYPTOPP_DISABLE_AESNI" }
 
-	postbuildcommands {
-		"{MKDIR} %{!wks.location}/Libs/include",
-	}
+	--postbuildcommands {
+	--	"{MKDIR} %{!wks.location}/Libs/include",
+	--}
 
 	filter { "configurations:Debug" }
 		defines { "DEBUG" }
