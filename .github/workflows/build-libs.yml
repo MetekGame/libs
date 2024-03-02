@@ -108,3 +108,12 @@ jobs:
         name: Libs - ${{ matrix.name }} (${{ matrix.mode }})
         path: |
           Libs
+
+  publish_release:
+    name: Publish release
+    runs-on: ubuntu-latest
+    needs: [ build-libs ]
+    steps:
+      - uses: actions/download-artifact@v4.1.4
+      - name: Display structure of downloaded files
+        run: ls -R
