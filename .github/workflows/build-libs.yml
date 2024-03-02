@@ -75,7 +75,7 @@ jobs:
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.2/freebsd-13.2-x86-64.qcow2
         run: |
             premake5 gmake2
-            gmake config=release -j3
+            gmake config=release -j4
 
     - name: Build Libs
       if: matrix.target == 'FreeBSD' && matrix.mode == 'debug'
@@ -88,7 +88,7 @@ jobs:
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.2/freebsd-13.2-x86-64.qcow2
         run: |
             premake5 gmake2
-            gmake -j3
+            gmake -j4
 
 
     - name: Build Libs
