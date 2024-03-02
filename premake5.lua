@@ -10,6 +10,10 @@ workspace "Metek Game libs"
 	defines { "QUILL_FMT_EXTERNAL", "QUILL_NO_EXCEPTIONS", "ZMQ_STATIC" }
 	defines { "CRYPTOPP_DISABLE_MIXED_ASM", "CRYPTOPP_DISABLE_SHANI", "CRYPTOPP_DISABLE_AESNI" }
 
+	postbuildcommands {
+		"{MKDIR} %{!wks.location}/Libs/include",
+	}
+
 	filter { "configurations:Debug" }
 		defines { "DEBUG" }
 
@@ -41,10 +45,6 @@ workspace "Metek Game libs"
 		flags { "MultiProcessorCompile" }
 		defines { "_MBCS", "WIN32", "__WIN32__", "_WIN32" }
 		buildoptions { "/Zc:__cplusplus" }
-
-	postbuildcommands {
-		"{MKDIR} %{!wks.location}/Libs/include",
-	}
 
 	if os.target() == "windows" then
 		disablewarnings {
