@@ -10,3 +10,6 @@
 [submodule "vendor/argon2"]
 	path = vendor/argon2
 	url = https://github.com/P-H-C/phc-winner-argon2
+[submodule "vendor/mariadb-connector-c"]
+	path = vendor/mariadb-connector-c
+	url = https://github.com/mariadb-corporation/mariadb-connector-c
