@@ -14,7 +14,7 @@ project "LibJPEG"
 		}
 	filter "system:not windows"
 		postbuildcommands {
-			"{MKDIR} %{!cfg.targetdir}",
+			"{MKDIR} %{!cfg.targetdir}../../include",
 			"{COPYFILE} %{!wks.location}/vendor/jpeg/*.h %{!cfg.targetdir}/../../include/"
 		}
 
