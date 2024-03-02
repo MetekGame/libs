@@ -4,9 +4,9 @@ project "LibMariaDB-Connector"
 	warnings "Extra"
 	staticruntime "on"
 
-	targetdir ".%{!wks.location}/vendor/mariadb-connector-c/.%{!wks.location}/vendor/mariadb-connector-c/Libs/lib/%{cfg.buildcfg}"
-	objdir ".%{!wks.location}/vendor/mariadb-connector-c/.%{!wks.location}/vendor/mariadb-connector-c/Obj/%{prj.name}/%{cfg.buildcfg}"
-	location ".%{!wks.location}/vendor/mariadb-connector-c/.%{!wks.location}/vendor/mariadb-connector-c/Out"
+	targetdir "../../Libs/lib/%{cfg.buildcfg}"
+	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
+	location "../../Out"
 
 	includedirs {
 		"%{!wks.location}/vendor/mariadb-connector-c/include",
@@ -71,13 +71,13 @@ project "LibMariaDB-Connector"
 		"%{!wks.location}/vendor/mariadb-connector-c/zlib/zutil.c",
 	}
 
+	defines { "HAVE_COMPRESS", "LIBMARIADB", "THREAD", "HAVE_TLS", 'SIZEOF_CHARP=4', 'MARIADB_MACHINE_TYPE="i386"' }
+
 	filter "configurations:Release"
 		defines { "NDEBUG", "DBUG_OFF" }
 
 	filter "configurations:Debug"
 		defines { "_DEBUG" }
-
-	defines { "HAVE_COMPRESS", "LIBMARIADB", "THREAD", "HAVE_TLS", 'SIZEOF_CHARP=4', 'MARIADB_MACHINE_TYPE="i386"' }
 
 	filter "system:Windows"
 		disablewarnings { "4996" }
