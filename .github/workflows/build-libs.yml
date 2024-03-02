@@ -10,16 +10,6 @@ jobs:
     strategy:
       matrix:
         include:
-        - os: windows-2019
-          name: Windows 2019
-          target: Windows
-          mode: release
-
-        - os: windows-2019
-          name: Windows 2019
-          target: Windows
-          mode: debug
-  
         - os: windows-2022
           name: Windows 2022
           target: Windows

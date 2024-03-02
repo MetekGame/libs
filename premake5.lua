@@ -42,7 +42,7 @@ workspace "Metek Game libs"
 		disablewarnings { "4996", "4100" }
 		--toolset "v142"
 		characterset "MBCS"
-		flags { "MultiProcessorCompile" }
+		--flags { "MultiProcessorCompile" }
 		defines { "_MBCS", "WIN32", "__WIN32__", "_WIN32" }
 		buildoptions { "/Zc:__cplusplus" }
 
