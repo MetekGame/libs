@@ -1,7 +1,3 @@
-function defaultProjectLocation()
-	location "%{wks.location}/Out/%{prj.name}"
-end
-
 workspace "Metek Game libs"
 	configurations { "Debug", "Release" }
 	defines { "SERVER" }
@@ -56,8 +52,6 @@ workspace "Metek Game libs"
 		}
 	end
 
-	os.makeDir("Libs")
-	os.makeDir("Libs/include")
 	group "External"
 		--include "/vendor-shared/lua-5.0.3/LUA.lua"
 		include "/premakeProj/jpeg/LIB_JPEG.lua"
