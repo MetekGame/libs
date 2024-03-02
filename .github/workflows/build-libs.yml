@@ -132,6 +132,6 @@ jobs:
       - uses: ncipollo/release-action@v1.14.0
         with:
           name: "Libs - ${{ steps.date.outputs.date }}"
-          tag: "${{ steps.date.outputs.date }}"
+#          tag: "${{ steps.date.outputs.date }}"
           artifacts: "*.zip"
           bodyFile: "release.md"
