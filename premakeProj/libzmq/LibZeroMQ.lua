@@ -10,7 +10,10 @@ project "LibZeroMQ"
 
 	defines { "ZMQ_STATIC", "ZMQ_CUSTOM_PLATFORM_HPP", "FD_SETSIZE=16384" }
 
-	postbuildcommands { "{COPYDIR} %[%{!wks.location}/vendor/libzmq/include] %[%{!wks.location}/Libs/include/]" }
+	postbuildcommands { 
+		"{COPYDIR} %[%{!wks.location}/vendor/libzmq/include] %[%{!wks.location}/Libs/include/]",
+		"{COPYFILE} %{!wks.location}/premakeProj/libzmq/platform.hpp %{!wks.location}/Libs/include"
+	}
 
 	includedirs {
 		"%{!wks.location}/vendor/libzmq/include/",

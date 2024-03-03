@@ -8,7 +8,8 @@ project "LibIL"
 	location "../../Out"
 
 	postbuildcommands { 
-		"{COPYDIR} %[%{!wks.location}/vendor/DevIL/DevIL/include] %[%{!wks.location}/Libs/include/]"
+		"{COPYDIR} %[%{!wks.location}/vendor/DevIL/DevIL/include] %[%{!wks.location}/Libs/include/]",
+		"{COPYFILE} %{!wks.location}/premakeProj/DevIL/config.h %{!wks.location}/Libs/include"
 	}
 
 	includedirs {

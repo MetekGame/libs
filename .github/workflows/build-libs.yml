@@ -7,6 +7,7 @@ on:
 jobs:
   build-libs:
     runs-on: ${{ matrix.os }}
+    name: Build libs on ${{ matrix.name }} (${{ matrix.mode }}) ${{ matrix.toolset }}
     strategy:
       matrix:
         include:
@@ -14,11 +15,13 @@ jobs:
           name: Windows 2022
           target: Windows
           mode: release
+          toolset: clang
 
         - os: windows-2022
           name: Windows 2022
           target: Windows
           mode: debug
+          toolset: clang
 
         #- os: ubuntu-22.04
         #  name: Ubuntu 22.04
@@ -29,11 +32,13 @@ jobs:
           name: FreeBSD 13.2
           mode: release
           target: FreeBSD
+          toolset: clang
 
         - os: ubuntu-22.04
           name: FreeBSD 13.2
           mode: debug
           target: FreeBSD
+          toolset: clang
 
     steps:
     - uses: actions/checkout@v4.1.1
@@ -86,19 +91,15 @@ jobs:
 
     - name: Build Libs
       if: matrix.target == 'Windows' && matrix.mode == 'debug'
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild . /m /p:Configuration=Debug
 
     - name: Build Libs
       if: matrix.target == 'Windows' && matrix.mode == 'release'
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild . /m /p:Configuration=Release
 
     - uses: actions/upload-artifact@v4.3.1
       with:
-        name: Libs - ${{ matrix.name }} (${{ matrix.mode }})
+        name: Libs_${{ matrix.name }}_${{ matrix.mode }}_${{ matrix.toolset }}
         path: |
           Libs
 
@@ -116,7 +117,7 @@ jobs:
         id: date
         run: |
           echo "dateTime=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_OUTPUT
-          echo "date=$(date +'%Y-%m-%dS')" >> $GITHUB_OUTPUT
+          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       - name: Run Script
         shell: bash
         run: |
@@ -125,7 +126,7 @@ jobs:
               for dir in */; do
                 dir=${dir%/}
                 zip_file="$dir.zip"
-                zip -r "$zip_file" "$dir"
+                zip -r "$zip_file" "$dir"/*
                 sha256sum_value=$(sha256sum "$zip_file" | awk '{print $1}')
                 echo "### $zip_file" >> "release.md"
                 echo "SHA-256: $sha256sum_value" >> "release.md"
