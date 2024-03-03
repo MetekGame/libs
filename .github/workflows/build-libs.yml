@@ -23,17 +23,17 @@ jobs:
           configuration: Debug
           platform: Clang
 
-        - os: windows-2022
-          name: Windows 2022
-          target: Windows
-          configuration: Release
-          platform: MSVC
+        # - os: windows-2022
+        #   name: Windows 2022
+        #   target: Windows
+        #   configuration: Release
+        #   platform: MSVC
 
-        - os: windows-2022
-          name: Windows 2022
-          target: Windows
-          configuration: Debug
-          platform: MSVC
+        # - os: windows-2022
+        #   name: Windows 2022
+        #   target: Windows
+        #   configuration: Debug
+        #   platform: MSVC
 
         #- os: ubuntu-22.04
         #  name: Ubuntu 22.04
