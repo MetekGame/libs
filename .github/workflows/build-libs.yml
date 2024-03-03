@@ -7,33 +7,34 @@ on:
 jobs:
   build-libs:
     runs-on: ${{ matrix.os }}
-    name: Build libs on ${{ matrix.name }} (${{ matrix.mode }}) ${{ matrix.toolset }}
+    name: Build libs on ${{ matrix.name }} (${{ matrix.configuration }}) ${{ matrix.platform }}
     strategy:
       matrix:
         include:
         - os: windows-2022
           name: Windows 2022
           target: Windows
-          mode: release
-          toolset: clang
+          configuration: Release
+          platform: Clang
 
         - os: windows-2022
           name: Windows 2022
           target: Windows
-          mode: debug
-          toolset: clang
+          configuration: Debug
+          platform: Clang
 
         - os: windows-2022
           name: Windows 2022
           target: Windows
-          mode: release
-          toolset: msvc
+          configuration: Release
+          platform: MSVC
 
         - os: windows-2022
           name: Windows 2022
           target: Windows
-          mode: debug
-          toolset: msvc
+          configuration: Debug
+          platform: MSVC
+
         #- os: ubuntu-22.04
         #  name: Ubuntu 22.04
         #- os: macos-12
@@ -41,15 +42,15 @@ jobs:
         #  target: macOS
         - os: ubuntu-22.04
           name: FreeBSD 13.2
-          mode: release
           target: FreeBSD
-          toolset: clang
+          configuration: release
+          platform: Clang
 
         - os: ubuntu-22.04
           name: FreeBSD 13.2
-          mode: debug
           target: FreeBSD
-          toolset: clang
+          configuration: debug
+          platform: Clang
 
     steps:
     - uses: actions/checkout@v4.1.1
@@ -74,7 +75,7 @@ jobs:
         Tools\Windows\premake5 vs2022
 
     - name: Build Libs
-      if: matrix.target == 'FreeBSD' && matrix.mode =='release'
+      if: matrix.target == 'FreeBSD'
       uses: cross-platform-actions/action@v0.23.0
       with:
         operating_system: freebsd
@@ -84,40 +85,15 @@ jobs:
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.2/freebsd-13.2-x86-64.qcow2
         run: |
             premake5 gmake2
-            gmake config=release_clang -j4
+            gmake config=${{ matrix.configuration }}_${{ matrix.platform }} -j4
 
     - name: Build Libs
-      if: matrix.target == 'FreeBSD' && matrix.mode == 'debug'
-      uses: cross-platform-actions/action@v0.23.0
-      with:
-        operating_system: freebsd
-        architecture: x86-64
-        version: '13.2'
-        shell: bash
-        image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.2/freebsd-13.2-x86-64.qcow2
-        run: |
-            premake5 gmake2
-            gmake config=debug_clang -j4
-
-    - name: Build Libs
-      if: matrix.target == 'Windows' && matrix.mode == 'debug' && matrix.toolset == 'clang'
-      run: msbuild . /m /p:Configuration=Debug Clang
-
-    - name: Build Libs
-      if: matrix.target == 'Windows' && matrix.mode == 'debug' && matrix.toolset == 'msvc'
-      run: msbuild . /m /p:Configuration=Debug MSVC
-
-    - name: Build Libs
-      if: matrix.target == 'Windows' && matrix.mode == 'release' && matrix.toolset == 'clang'
-      run: msbuild . /m /p:Configuration=Release Clang
-
-    - name: Build Libs
-      if: matrix.target == 'Windows' && matrix.mode == 'debug' && matrix.toolset == 'msvc'
-      run: msbuild . /m /p:Configuration=Release MSVC
+      if: matrix.target == 'Windows'
+      run: msbuild . /t:Build /p:Configuration=${{ matrix.configuration }};Platform=${{ matrix.platform }}
 
     - uses: actions/upload-artifact@v4.3.1
       with:
-        name: Libs_${{ matrix.name }}_${{ matrix.mode }}_${{ matrix.toolset }}
+        name: Libs_${{ matrix.name }}_${{ matrix.configuration }}_${{ matrix.platform }}
         path: |
           Libs
 
