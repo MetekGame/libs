@@ -35,7 +35,6 @@ project "LibJPEG"
 	filter "system:Windows"
 		disablewarnings { "4996" }
 		defines { "_LIB", "WIN32", "_CRT_SECURE_NO_WARNINGS" }
-		flags { "MultiProcessorCompile" }
 		postbuildcommands {
 			"{COPYFILE} %[%{!wks.location}vendor/jpeg/*.h] %[%{!wks.location}Libs/include/]"
 		}

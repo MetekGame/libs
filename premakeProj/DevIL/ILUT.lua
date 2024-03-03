@@ -39,4 +39,3 @@ project "LibILUT"
 	filter "system:Windows"
 		disablewarnings { "4996" }
 		defines { "WIN32", "ALLEGRO_MSVC", "_WINDOWS" }
-		flags { "MultiProcessorCompile" }

@@ -40,4 +40,3 @@ project "LibILU"
 	filter "system:Windows"
 		disablewarnings { "4996" }
 		defines { "WIN32", "_WINDOWS" }
-		flags { "MultiProcessorCompile" }

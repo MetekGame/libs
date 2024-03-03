@@ -82,7 +82,6 @@ project "LibMariaDB-Connector"
 	filter "system:Windows"
 		disablewarnings { "4996" }
 		defines { "WIN32", "_WINDOWS", "WIN32_LEAN_AND_MEAN", "HAVE_SCHANNEL",'MARIADB_SYSTEM_TYPE="Windows"', "_CRT_SECURE_NO_WARNINGS" }
-		flags { "MultiProcessorCompile" }
 		files { 
 			"%{!wks.location}/vendor/mariadb-connector-c/win-iconv/win_iconv.c",
 			"%{!wks.location}/vendor/mariadb-connector-c/libmariadb/win32_errmsg.c",

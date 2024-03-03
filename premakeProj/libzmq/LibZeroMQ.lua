@@ -113,7 +113,6 @@ project "LibZeroMQ"
 		defines { "WIN32", "_WINDOWS", "_WIN32_WINNT=0x0A00", "_REENTRANT", "_THREAD_SAFE",
 		"_CRT_SECURE_NO_WARNINGS", "_WINSOCK_DEPRECATED_NO_WARNINGS" }
 		disablewarnings { "4221" }
-		flags { "MultiProcessorCompile" }
 		files {
 			"%{!wks.location}/vendor/libzmq/%{!wks.location}/vendor/libzmq/src/windows.hpp",
 			"%{!wks.location}/vendor/libzmq/external/wepoll/**.h",

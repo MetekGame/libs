@@ -8,10 +8,6 @@ project "LibArgon2"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
-	postbuildcommands { 
-		"{COPYDIR} %[%{!wks.location}/vendor/argon2/include] %[%{!wks.location}/Libs/include/]"
-	}
-
 	includedirs {
 		"%{!wks.location}/vendor/argon2/include/",
 		"%{!wks.location}/vendor/argon2/src/"
@@ -36,8 +32,19 @@ project "LibArgon2"
 
 	filter "system:Windows"
 		disablewarnings { "4996" }
-		defines { "_MBCS" }
-		flags { "MultiProcessorCompile" }
+		postbuildcommands {
+			"{COPYFILE} %[%{!wks.location}vendor/argon2/include/*.h] %[%{!wks.location}Libs/include/]",
+		}
 
 	filter "system:bsd"
-		buildoptions { "-std=c89 -fPIC -fvisibility=hidden -DA2_VISCTL=1 -Werror=declaration-after-statement -D_FORTIFY_SOURCE=2 -Wno-type-limits -Werror -DTEST_LARGE_RAM"}
+		defines {
+			"A2_VISCTL=1",
+			"_FORTIFY_SOURCE=2",
+			"TEST_LARGE_RAM",
+		}
+		buildoptions { "-std=c89 -fPIC -fvisibility=hidden -Werror=declaration-after-statement -Wno-type-limits -Werror"}
+
+	filter "system:not windows"
+		postbuildcommands {
+			"{COPYFILE} %{!wks.location}/vendor/argon2/include/*.h %{!wks.location}/Libs/include"
+		}

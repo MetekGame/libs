@@ -30,4 +30,3 @@ project "LibFMT"
 
 	filter "system:Windows"
 		defines { "_WINDOWS", "WIN32" }
-		flags { "MultiProcessorCompile" }

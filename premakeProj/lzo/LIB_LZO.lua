@@ -29,8 +29,6 @@ project "LibLZO"
 
 	filter "system:Windows"
 		disablewarnings { "4996" }
-		defines { "_MBCS" }
-		flags { "MultiProcessorCompile" }
 
 	filter "system:bsd"
 		buildoptions { "-fPIC -shared" }
