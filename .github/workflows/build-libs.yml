@@ -144,7 +144,9 @@ jobs:
               for dir in */; do
                 dir=${dir%/}
                 zip_file="$dir.zip"
-                zip -r "$zip_file" "$dir"/*
+                cd $dir
+                zip -r ../"$zip_file" *
+                cd ..
                 sha256sum_value=$(sha256sum "$zip_file" | awk '{print $1}')
                 echo "### $zip_file" >> "release.md"
                 echo "SHA-256: $sha256sum_value" >> "release.md"
@@ -152,9 +154,9 @@ jobs:
               done
       - name: Display structure of downloaded files
         run: ls -R
-      # - uses: ncipollo/release-action@v1.14.0
-      #   with:
-      #     name: "Libs - ${{ steps.date.outputs.dateTime }}"
-      #     tag: "${{ steps.date.outputs.date }}"
-      #     artifacts: "*.zip"
-      #     bodyFile: "release.md"
+      - uses: ncipollo/release-action@v1.14.0
+        with:
+          name: "Libs - ${{ steps.date.outputs.dateTime }}"
+          tag: "${{ steps.date.outputs.date }}"
+          artifacts: "*.zip"
+          bodyFile: "release.md"
