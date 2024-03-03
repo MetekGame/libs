@@ -37,4 +37,4 @@ project "LibLZO"
 		}
 
 	filter "system:bsd"
-		buildoptions { "-fPIC -shared" }
+		buildoptions { "-fPIC" }
