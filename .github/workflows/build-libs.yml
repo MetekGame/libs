@@ -120,7 +120,7 @@ jobs:
               for dir in */; do
                 dir=${dir%/}
                 zip_file="$dir.zip"
-                cd $dir
+                cd "$dir"
                 zip -r ../"$zip_file" *
                 cd ..
                 sha256sum_value=$(sha256sum "$zip_file" | awk '{print $1}')
