@@ -120,6 +120,6 @@ project "LibZeroMQ"
 
 	filter "system:not windows"
 		postbuildcommands {
-			"{COPYFILE} -n %{!wks.location}/vendor/libzmq/include/*.h %{!wks.location}/Libs/include/ 2>&1",
-			"{COPYFILE} -n %{!wks.location}/premakeProj/libzmq/platform.hpp %{!wks.location}/Libs/include/ 2>&1"
+			"{COPYFILE} -n %{!wks.location}/vendor/libzmq/include/*.h %{!wks.location}/Libs/include/ 2>&1 || true",
+			"{COPYFILE} -n %{!wks.location}/premakeProj/libzmq/platform.hpp %{!wks.location}/Libs/include/ 2>&1 || true"
 		}
