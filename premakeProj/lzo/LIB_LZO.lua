@@ -7,10 +7,6 @@ project "LibLZO"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
-	postbuildcommands { 
-		"{COPYDIR} %[%{!wks.location}/vendor/lzo/include] %[%{!wks.location}/Libs/include/]"
-	}
-
 	includedirs {
 		"%{!wks.location}/vendor/lzo/include",
 		"%{!wks.location}/vendor/lzo/src"
@@ -29,6 +25,16 @@ project "LibLZO"
 
 	filter "system:Windows"
 		disablewarnings { "4996" }
+		postbuildcommands {
+			"{MKDIR} %{!wks.location}/Libs/include/lzo",
+			"{COPYFILE} %[%{!wks.location}vendor/lzo/include/lzo/*.h] %[%{!wks.location}Libs/include/lzo/]",
+		}
+
+	filter "system:not windows"
+		postbuildcommands {
+			"{MKDIR} %{!wks.location}/Libs/include/lzo",
+			"{COPYFILE} %{!wks.location}/vendor/lzo/include/lzo/*.h %{!wks.location}/Libs/include/lzo",
+		}
 
 	filter "system:bsd"
 		buildoptions { "-fPIC -shared" }

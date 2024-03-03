@@ -46,3 +46,15 @@ project "LibIL"
 	filter "system:Windows"
 		disablewarnings { "4996" }
 		defines { "WIN32", "_WINDOWS" }
+		postbuildcommands {
+			"{COPYFILE} %[%{!wks.location}vendor/DevIL/DevIL/include/*.h] %[%{!wks.location}Libs/include/]",
+			"{COPYFILE} %[%{!wks.location}vendor/DevIL/DevIL/include/devil_cpp_wrapper.hpp] %[%{!wks.location}Libs/include/]",
+			"{COPYFILE} %[%{!wks.location}premakeProj/DevIL/config.h] %[%{!wks.location}Libs/include/]"
+		}
+
+	filter "system:not windows"
+		postbuildcommands {
+			"{COPYFILE} %{!wks.location}/vendor/DevIL/DevIL/include/*.h %{!wks.location}/Libs/include",
+			"{COPYFILE} %{!wks.location}/vendor/DevIL/DevIL/include/devil_cpp_wrapper.hpp %{!wks.location}/Libs/include",
+			"{COPYFILE} %{!wks.location}/premakeProj/DevIL/config.h %{!wks.location}/Libs/include"
+		}

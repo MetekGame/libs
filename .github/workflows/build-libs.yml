@@ -7,7 +7,7 @@ on:
 jobs:
   build-libs:
     runs-on: ${{ matrix.os }}
-    name: Build libs on ${{ matrix.name }} (${{ matrix.configuration }}) ${{ matrix.platform }}
+    name: Build libs on ${{ matrix.name }} ${{ matrix.platform }}
     strategy:
       matrix:
         include:
@@ -17,11 +17,11 @@ jobs:
           configuration: Release
           platform: Clang
 
-        - os: windows-2022
-          name: Windows 2022
-          target: Windows
-          configuration: Debug
-          platform: Clang
+        # - os: windows-2022
+        #   name: Windows 2022
+        #   target: Windows
+        #   configuration: Debug
+        #   platform: Clang
 
         # - os: windows-2022
         #   name: Windows 2022
@@ -46,11 +46,11 @@ jobs:
           configuration: release
           platform: clang
 
-        - os: ubuntu-22.04
-          name: FreeBSD 13.2
-          target: FreeBSD
-          configuration: debug
-          platform: clang
+        # - os: ubuntu-22.04
+        #   name: FreeBSD 13.2
+        #   target: FreeBSD
+        #   configuration: debug
+        #   platform: clang
 
     steps:
     - uses: actions/checkout@v4.1.1
@@ -85,15 +85,18 @@ jobs:
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.3/freebsd-13.2-x86-64.qcow2
         run: |
             premake5 gmake2
-            gmake config=${{ matrix.configuration }}_${{ matrix.platform }} -j4
+            gmake config=release_${{ matrix.platform }} -j4
+            gmake config=debug_${{ matrix.platform }} -j4
 
     - name: Build Libs
       if: matrix.target == 'Windows'
-      run: msbuild . /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
+      run: |
+        msbuild . /m /p:Configuration=Release /p:Platform=${{ matrix.platform }}
+        msbuild . /m /p:Configuration=Debug /p:Platform=${{ matrix.platform }}
 
     - uses: actions/upload-artifact@v4.3.1
       with:
-        name: Libs_${{ matrix.name }}_${{ matrix.configuration }}_${{ matrix.platform }}
+        name: Libs_${{ matrix.name }}_${{ matrix.platform }}
         path: |
           Libs
 

@@ -8,10 +8,6 @@ project "LibFMT"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
-	postbuildcommands { 
-		"{COPYDIR} %[%{!wks.location}/vendor/fmt/include] %[%{!wks.location}/Libs/include/]"
-	}
-
 	includedirs {
 		"%{!wks.location}/vendor/fmt/include/"
 	}
@@ -30,3 +26,13 @@ project "LibFMT"
 
 	filter "system:Windows"
 		defines { "_WINDOWS", "WIN32" }
+		postbuildcommands {
+			"{MKDIR} %{!wks.location}/Libs/include/fmt",
+			"{COPYFILE} %[%{!wks.location}vendor/fmt/include/fmt/*.h] %[%{!wks.location}Libs/include/fmt/]",
+		}
+
+	filter "system:not windows"
+		postbuildcommands {
+			"{MKDIR} %{!wks.location}/Libs/include/fmt",
+			"{COPYFILE} %{!wks.location}/vendor/fmt/include/fmt/*.h %{!wks.location}/Libs/include/fmt",
+		}

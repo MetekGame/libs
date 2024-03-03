@@ -10,11 +10,6 @@ project "LibZeroMQ"
 
 	defines { "ZMQ_STATIC", "ZMQ_CUSTOM_PLATFORM_HPP", "FD_SETSIZE=16384" }
 
-	postbuildcommands { 
-		"{COPYDIR} %[%{!wks.location}/vendor/libzmq/include] %[%{!wks.location}/Libs/include/]",
-		"{COPYFILE} %{!wks.location}/premakeProj/libzmq/platform.hpp %{!wks.location}/Libs/include"
-	}
-
 	includedirs {
 		"%{!wks.location}/vendor/libzmq/include/",
 		"%{!wks.location}/vendor/libzmq/",
@@ -117,4 +112,14 @@ project "LibZeroMQ"
 			"%{!wks.location}/vendor/libzmq/%{!wks.location}/vendor/libzmq/src/windows.hpp",
 			"%{!wks.location}/vendor/libzmq/external/wepoll/**.h",
 			"%{!wks.location}/vendor/libzmq/external/wepoll/**.c",
+		}
+		postbuildcommands {
+			"{COPYFILE} %[%{!wks.location}vendor/libzmq/include/*.h] %[%{!wks.location}Libs/include/]",
+			"{COPYFILE} %[%{!wks.location}premakeProj/libzmq/platform.hpp] %[%{!wks.location}Libs/include/]",
+		}
+
+	filter "system:not windows"
+		postbuildcommands {
+			"{COPYFILE} %{!wks.location}/vendor/libzmq/include/*.h %{!wks.location}/Libs/include",
+			"{COPYFILE} %{!wks.location}/premakeProj/libzmq/platform.hpp %{!wks.location}/Libs/include"
 		}
