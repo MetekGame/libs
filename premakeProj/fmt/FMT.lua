@@ -34,5 +34,5 @@ project "LibFMT"
 	filter "system:not windows"
 		postbuildcommands {
 			"{MKDIR} %{!wks.location}/Libs/include/fmt",
-			"{COPYFILE} -n %{!wks.location}/vendor/fmt/include/fmt/*.h %{!wks.location}/Libs/include/fmt/",
+			"{COPYFILE} -n %{!wks.location}/vendor/fmt/include/fmt/*.h %{!wks.location}/Libs/include/fmt/ 2>&1",
 		}

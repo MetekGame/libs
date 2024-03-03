@@ -46,5 +46,5 @@ project "LibArgon2"
 
 	filter "system:not windows"
 		postbuildcommands {
-			"{COPYFILE} -n %{!wks.location}/vendor/argon2/include/*.h %{!wks.location}/Libs/include/"
+			"{COPYFILE} -n %{!wks.location}/vendor/argon2/include/*.h %{!wks.location}/Libs/include/ 2>&1"
 		}
