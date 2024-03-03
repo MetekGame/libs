@@ -54,7 +54,7 @@ project "LibIL"
 
 	filter "system:not windows"
 		postbuildcommands {
-			"{COPYFILE} %{!wks.location}/vendor/DevIL/DevIL/include/*.h %{!wks.location}/Libs/include",
-			"{COPYFILE} %{!wks.location}/vendor/DevIL/DevIL/include/devil_cpp_wrapper.hpp %{!wks.location}/Libs/include",
-			"{COPYFILE} %{!wks.location}/premakeProj/DevIL/config.h %{!wks.location}/Libs/include"
+			"{COPYFILE} -n %{!wks.location}/vendor/DevIL/DevIL/include/*.h %{!wks.location}/Libs/include",
+			"{COPYFILE} -n %{!wks.location}/vendor/DevIL/DevIL/include/devil_cpp_wrapper.hpp %{!wks.location}/Libs/include",
+			"{COPYFILE} -n %{!wks.location}/premakeProj/DevIL/config.h %{!wks.location}/Libs/include"
 		}

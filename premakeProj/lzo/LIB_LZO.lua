@@ -33,7 +33,7 @@ project "LibLZO"
 	filter "system:not windows"
 		postbuildcommands {
 			"{MKDIR} %{!wks.location}/Libs/include/lzo",
-			"{COPYFILE} %{!wks.location}/vendor/lzo/include/lzo/*.h %{!wks.location}/Libs/include/lzo",
+			"{COPYFILE} -n %{!wks.location}/vendor/lzo/include/lzo/*.h %{!wks.location}/Libs/include/lzo",
 		}
 
 	filter "system:bsd"
