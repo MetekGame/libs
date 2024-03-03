@@ -7,11 +7,6 @@ project "LibIL"
 	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
 	location "../../Out"
 
-	postbuildcommands { 
-		"{COPYDIR} %[%{!wks.location}/vendor/DevIL/DevIL/include] %[%{!wks.location}/Libs/include/]",
-		"{COPYFILE} %{!wks.location}/premakeProj/DevIL/config.h %{!wks.location}/Libs/include"
-	}
-
 	includedirs {
 		"%{!wks.location}/vendor/DevIL/DevIL/src-IL/include",
 		"%{!wks.location}/vendor/DevIL/DevIL/include",
