@@ -41,5 +41,5 @@ project "LibJPEG"
 
 	filter "system:not windows"
 		postbuildcommands {
-			"{COPYFILE} -n %{!wks.location}/vendor/jpeg/*.h %{!wks.location}/Libs/include"
+			"{COPYFILE} -n %{!wks.location}/vendor/jpeg/*.h %{!wks.location}/Libs/include/"
 		}
