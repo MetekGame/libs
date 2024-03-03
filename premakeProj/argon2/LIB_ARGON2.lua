@@ -40,4 +40,4 @@ project "LibArgon2"
 		flags { "MultiProcessorCompile" }
 
 	filter "system:bsd"
-		buildoptions { "-std=c89 -fPIC -fvisibility=hidden -DA2_VISCTL=1 -Werror=declaration-after-statement -D_FORTIFY_SOURCE=2 -Wextra -Wno-type-limits -Werror -DTEST_LARGE_RAM"}
+		buildoptions { "-std=c89 -fPIC -fvisibility=hidden -DA2_VISCTL=1 -Werror=declaration-after-statement -D_FORTIFY_SOURCE=2 -Wno-type-limits -Werror -DTEST_LARGE_RAM"}

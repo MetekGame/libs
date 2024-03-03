@@ -95,7 +95,7 @@ project "LibMariaDB-Connector"
 			"%{!wks.location}/vendor/mariadb-connector-c/win-iconv",
 		}
 		postbuildcommands {
-			"{COPYFILE} %{!wks.location}/premakeProj/mariadb-connector-c/ma_config.h %{!wks.location}/Libs/include",
+			"{COPYFILE} %[%{!wks.location}/premakeProj/mariadb-connector-c/*.h] %[%{!wks.location}Libs/include/]",
 			"{COPYFILE} %[%{!wks.location}vendor/mariadb-connector-c/include/*.h] %[%{!wks.location}Libs/include/]",
 			"{MKDIR} %{!wks.location}/Libs/include/mariadb",
 			"{MKDIR} %{!wks.location}/Libs/include/mysql",
@@ -105,7 +105,7 @@ project "LibMariaDB-Connector"
 
 	filter "system:not windows"
 		postbuildcommands {
-			"{COPYFILE} %{!wks.location}/premakeProj/mariadb-connector-c/ma_config.h %{!wks.location}/Libs/include",
+			"{COPYFILE} %{!wks.location}/premakeProj/mariadb-connector-c/*.h %{!wks.location}/Libs/include",
 			"{COPYFILE} %{!wks.location}/vendor/mariadb-connector-c/include/*.h %{!wks.location}/Libs/include",
 			"{MKDIR} %{!wks.location}/Libs/include/mariadb",
 			"{MKDIR} %{!wks.location}/Libs/include/mysql",

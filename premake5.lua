@@ -1,10 +1,9 @@
 workspace "Metek Game libs"
 	configurations { "Debug", "Release" }
-	defines { "SERVER" }
+	platforms { "Clang", "MSVC" }
 	architecture "x86"
 	staticruntime "on"
 	vectorextensions "AVX2"
-	toolset "clang"
 
 	--Lib defines
 	defines { "ZMQ_STATIC" }
@@ -13,6 +12,16 @@ workspace "Metek Game libs"
 	--postbuildcommands {
 	--	"{MKDIR} %{!wks.location}/Libs/include",
 	--}
+
+	filter { "system:Windows", "platforms:MSVC" }
+		system "Windows"
+		toolset "v143"
+
+	filter { "system:not windows", "platforms:MSVC" }
+		toolset "clang"
+
+	filter { "platforms:Clang" }
+		toolset "clang"
 
 	filter { "configurations:Debug" }
 		defines { "DEBUG" }
@@ -40,7 +49,6 @@ workspace "Metek Game libs"
 	
 	filter { "system:Windows" }
 		disablewarnings { "4996", "4100" }
-		--toolset "v142"
 		characterset "MBCS"
 		--flags { "MultiProcessorCompile" }
 		defines { "_MBCS", "WIN32", "__WIN32__", "_WIN32" }
