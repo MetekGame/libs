@@ -82,14 +82,14 @@ jobs:
         architecture: x86-64
         version: '13.2'
         shell: bash
-        image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.2/freebsd-13.2-x86-64.qcow2
+        image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.3/freebsd-13.2-x86-64.qcow2
         run: |
             premake5 gmake2
             gmake config=${{ matrix.configuration }}_${{ matrix.platform }} -j4
 
     - name: Build Libs
       if: matrix.target == 'Windows'
-      run: msbuild . /t:Build /p:Configuration=${{ matrix.configuration }};Platform=${{ matrix.platform }}
+      run: msbuild . /m /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
 
     - uses: actions/upload-artifact@v4.3.1
       with:
