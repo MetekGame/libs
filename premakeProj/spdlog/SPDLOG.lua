@@ -54,15 +54,15 @@ project "LibSpdLog"
 	filter "system:not windows"
 		postbuildcommands {
 			"{MKDIR} %{!wks.location}/Libs/include/spdlog",
-			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/*.h %{!wks.location}/Libs/include/",
+			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/*.h %{!wks.location}/Libs/include/spdlog/",
 			"{MKDIR} %{!wks.location}/Libs/include/spdlog/cfg",
-			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/cfg/*.h %{!wks.location}/Libs/include/cfg/",
+			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/cfg/*.h %{!wks.location}/Libs/include/spdlog/cfg/",
 			"{MKDIR} %{!wks.location}/Libs/include/spdlog/details",
-			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/details/*.h %{!wks.location}/Libs/include/details/",
+			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/details/*.h %{!wks.location}/Libs/include/spdlog/details/",
 			"{MKDIR} %{!wks.location}/Libs/include/spdlog/fmt",
-			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/fmt/*.h %{!wks.location}/Libs/include/fmt/",
+			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/fmt/*.h %{!wks.location}/Libs/include/spdlog/fmt/",
 			"{MKDIR} %{!wks.location}/Libs/include/spdlog/fmt/bundled",
-			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/fmt/bundled/*.h %{!wks.location}/Libs/include/fmt/bundled/",
+			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/fmt/bundled/*.h %{!wks.location}/Libs/include/spdlog/fmt/bundled/",
 			"{MKDIR} %{!wks.location}/Libs/include/spdlog/sinks",
-			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/sinks/*.h %{!wks.location}/Libs/include/sinks/",
+			"{COPYFILE} -n %{!wks.location}/vendor/spdlog/include/sinks/*.h %{!wks.location}/Libs/include/spdlog/sinks/",
 		}
