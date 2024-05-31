@@ -93,24 +93,6 @@ project "LibMariaDB-Connector"
 			"%{!wks.location}/vendor/mariadb-connector-c/libmariadb",
 			"%{!wks.location}/vendor/mariadb-connector-c/win-iconv",
 		}
-		postbuildcommands {
-			"{COPYFILE} %[%{!wks.location}/premakeProj/mariadb-connector-c/*.h] %[%{!wks.location}Libs/include/]",
-			"{COPYFILE} %[%{!wks.location}vendor/mariadb-connector-c/include/*.h] %[%{!wks.location}Libs/include/]",
-			"{MKDIR} %{!wks.location}/Libs/include/mariadb",
-			"{MKDIR} %{!wks.location}/Libs/include/mysql",
-			"{COPYDIR} %[%{!wks.location}/vendor/mariadb-connector-c/include/mariadb] %[%{!wks.location}/Libs/include/mariadb]",
-			"{COPYDIR} %[%{!wks.location}/vendor/mariadb-connector-c/include/mysql] %[%{!wks.location}/Libs/include/mysql]"
-		}
-
-	filter "system:not windows"
-		postbuildcommands {
-			"{COPYFILE} -n %{!wks.location}/premakeProj/mariadb-connector-c/*.h %{!wks.location}/Libs/include/ 2>&1 || true",
-			"{COPYFILE} -n %{!wks.location}/vendor/mariadb-connector-c/include/*.h %{!wks.location}/Libs/include/ 2>&1 || true",
-			"{MKDIR} %{!wks.location}/Libs/include/mariadb",
-			"{MKDIR} %{!wks.location}/Libs/include/mysql",
-			"{COPYFILE} -n %{!wks.location}/vendor/mariadb-connector-c/include/mariadb/*.h %{!wks.location}/Libs/include/mariadb/ 2>&1 || true",
-			"{COPYFILE} -n %{!wks.location}/vendor/mariadb-connector-c/include/mysql/*.h %{!wks.location}/Libs/include/mysql/ 2>&1 || true"
-		}
 
 	filter "system:bsd"
 		buildoptions { "-fPIC" }

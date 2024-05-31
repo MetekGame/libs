@@ -41,17 +41,3 @@ project "LibIL"
 	filter "system:Windows"
 		disablewarnings { "4996" }
 		defines { "WIN32", "_WINDOWS" }
-		postbuildcommands {
-			"{MKDIR} %{!wks.location}/Libs/include/IL",
-			"{COPYFILE} %[%{!wks.location}vendor/DevIL/DevIL/include/IL/*.h] %[%{!wks.location}Libs/include/IL/]",
-			"{COPYFILE} %[%{!wks.location}vendor/DevIL/DevIL/include/IL/devil_cpp_wrapper.hpp] %[%{!wks.location}Libs/include/IL/]",
-			"{COPYFILE} %[%{!wks.location}premakeProj/DevIL/config.h] %[%{!wks.location}Libs/include/IL/]"
-		}
-
-	filter "system:not windows"
-		postbuildcommands {
-			"{MKDIR} %{!wks.location}/Libs/include/IL",
-			"{COPYFILE} -n %{!wks.location}/vendor/DevIL/DevIL/include/IL/*.h %{!wks.location}/Libs/include/IL/ 2>&1 || true",
-			"{COPYFILE} -n %{!wks.location}/vendor/DevIL/DevIL/include/IL/devil_cpp_wrapper.hpp %{!wks.location}/Libs/include/IL/ 2>&1 || true",
-			"{COPYFILE} -n %{!wks.location}/premakeProj/DevIL/config.h %{!wks.location}/Libs/include/IL/ 2>&1 || true"
-		}

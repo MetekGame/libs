@@ -32,9 +32,6 @@ project "LibArgon2"
 
 	filter "system:Windows"
 		disablewarnings { "4996" }
-		postbuildcommands {
-			"{COPYFILE} %[%{!wks.location}vendor/argon2/include/*.h] %[%{!wks.location}Libs/include/]",
-		}
 
 	filter "system:bsd"
 		defines {
@@ -43,8 +40,3 @@ project "LibArgon2"
 			"TEST_LARGE_RAM",
 		}
 		buildoptions { "-std=c89 -fPIC -fvisibility=hidden -Werror=declaration-after-statement -Wno-type-limits -Werror"}
-
-	filter "system:not windows"
-		postbuildcommands {
-			"{COPYFILE} -n %{!wks.location}/vendor/argon2/include/*.h %{!wks.location}/Libs/include/ 2>&1 || true"
-		}

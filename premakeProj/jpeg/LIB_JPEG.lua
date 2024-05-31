@@ -35,11 +35,3 @@ project "LibJPEG"
 	filter "system:Windows"
 		disablewarnings { "4996" }
 		defines { "_LIB", "WIN32", "_CRT_SECURE_NO_WARNINGS" }
-		postbuildcommands {
-			"{COPYFILE} %[%{!wks.location}vendor/jpeg/*.h] %[%{!wks.location}Libs/include/]"
-		}
-
-	filter "system:not windows"
-		postbuildcommands {
-			"{COPYFILE} -n %{!wks.location}/vendor/jpeg/*.h %{!wks.location}/Libs/include/ 2>&1 || true"
-		}

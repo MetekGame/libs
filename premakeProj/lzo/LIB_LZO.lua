@@ -25,16 +25,6 @@ project "LibLZO"
 
 	filter "system:Windows"
 		disablewarnings { "4996" }
-		postbuildcommands {
-			"{MKDIR} %{!wks.location}/Libs/include/lzo",
-			"{COPYFILE} %[%{!wks.location}vendor/lzo/include/lzo/*.h] %[%{!wks.location}Libs/include/lzo/]",
-		}
-
-	filter "system:not windows"
-		postbuildcommands {
-			"{MKDIR} %{!wks.location}/Libs/include/lzo",
-			"{COPYFILE} -n %{!wks.location}/vendor/lzo/include/lzo/*.h %{!wks.location}/Libs/include/lzo/ 2>&1 || true",
-		}
 
 	filter "system:bsd"
 		buildoptions { "-fPIC" }

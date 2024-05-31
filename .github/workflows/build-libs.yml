@@ -5,7 +5,40 @@ on:
   workflow_dispatch:
 
 jobs:
+  prepare-includes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.6
+      - name: Copy files
+        run: |
+          mkdir IncludesOut
+          cp -r vendor/argon2/include IncludesOut/
+          cp vendor/jpeg/*.h IncludesOut/
+          cp -r vendor/libzmq/include IncludesOut/
+          cp premakeProj/libzmq/platform.hpp IncludesOut/
+          cp -r vendor/mariadb-connector-c/include IncludesOut/
+          cp premakeProj/mariadb-connector-c/*.h IncludesOut/
+
+          mkdir IncludesOut/IL
+          cp -r vendor/DevIL/DevIL/include/IL IncludesOut/IL/
+          cp premakeProj/DevIL/config.h IncludesOut/IL/
+
+          mkdir IncludesOut/fmt
+          cp -r vendor/fmt/include/fmt/ IncludesOut/fmt/
+
+          mkdir IncludesOut/lzo
+          cp -r vendor/lzo/include/lzo/ IncludesOut/lzo/
+
+          mkdir IncludesOut/spdlog
+          cp -r vendor/spdlog/include/spdlog/ IncludesOut/spdlog/
+
+      - uses: actions/upload-artifact@v4.3.3
+        with:
+          name: Includes
+          path: IncludesOut
+
   build-libs:
+    needs: prepare-includes
     runs-on: ${{ matrix.os }}
     name: Build libs on ${{ matrix.name }} ${{ matrix.platform }}
     strategy:
@@ -23,11 +56,11 @@ jobs:
         #   configuration: Debug
         #   platform: Clang
 
-        # - os: windows-2022
-        #   name: Windows 2022
-        #   target: Windows
-        #   configuration: Release
-        #   platform: MSVC
+        - os: windows-2022
+          name: Windows 2022
+          target: Windows
+          configuration: Release
+          platform: MSVC
 
         # - os: windows-2022
         #   name: Windows 2022
@@ -43,17 +76,17 @@ jobs:
         - os: ubuntu-22.04
           name: FreeBSD 13.2
           target: FreeBSD
-          configuration: release
+          configuration: Release
           platform: clang
 
         # - os: ubuntu-22.04
         #   name: FreeBSD 13.2
         #   target: FreeBSD
-        #   configuration: debug
+        #   configuration: Debug
         #   platform: clang
 
     steps:
-    - uses: actions/checkout@v4.1.1
+    - uses: actions/checkout@v4.1.6
       name: Checkout
       with:
         submodules: true
@@ -74,9 +107,9 @@ jobs:
       run: |
         Tools\Windows\premake5 vs2022
 
-    - name: Build Libs
-      if: matrix.target == 'FreeBSD'
-      uses: cross-platform-actions/action@v0.23.0
+    - name: Build Libs 
+      if: ${{ matrix.name == 'FreeBSD' && matrix.configuration == 'Debug' }}
+      uses: cross-platform-actions/action@v0.24.0
       with:
         operating_system: freebsd
         architecture: x86-64
@@ -85,16 +118,26 @@ jobs:
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.3/freebsd-13.2-x86-64.qcow2
         run: |
             premake5 gmake2
-            gmake config=release_${{ matrix.platform }} -j4
-            gmake config=debug_${{ matrix.platform }} -j4
+            gmake config=debug -j4
+  
+    - name: Build Libs 
+      if: ${{ matrix.name == 'FreeBSD' && matrix.configuration == 'Release' }}
+      uses: cross-platform-actions/action@v0.24.0
+      with:
+        operating_system: freebsd
+        architecture: x86-64
+        version: '13.2'
+        shell: bash
+        image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.3/freebsd-13.2-x86-64.qcow2
+        run: |
+            premake5 gmake2
+            gmake config=release -j4
 
     - name: Build Libs
       if: matrix.target == 'Windows'
-      run: |
-        msbuild . /m /p:Configuration=Release /p:Platform=${{ matrix.platform }}
-        msbuild . /m /p:Configuration=Debug /p:Platform=${{ matrix.platform }}
+      run: msbuild . /t:Build /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }}
 
-    - uses: actions/upload-artifact@v4.3.1
+    - uses: actions/upload-artifact@v4.3.3
       with:
         name: Libs_${{ matrix.name }}_${{ matrix.platform }}
         path: |
@@ -109,12 +152,14 @@ jobs:
       id-token: write
       deployments: write
     steps:
-      - uses: actions/download-artifact@v4.1.4
+      - uses: actions/download-artifact@v4.1.7
+
       - name: Get current date
         id: date
         run: |
           echo "dateTime=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_OUTPUT
           echo "date=$(date +'%Y-%m-%d_%H_%M_%S')" >> $GITHUB_OUTPUT
+
       - name: Run Script
         shell: bash
         run: |
@@ -131,8 +176,10 @@ jobs:
                 echo "SHA-256: $sha256sum_value" >> "release.md"
                 echo "" >> "release.md"
               done
+
       - name: Display structure of downloaded files
         run: ls -R
+
       - uses: ncipollo/release-action@v1.14.0
         with:
           name: "Libs - ${{ steps.date.outputs.dateTime }}"

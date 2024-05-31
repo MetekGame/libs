@@ -113,13 +113,3 @@ project "LibZeroMQ"
 			"%{!wks.location}/vendor/libzmq/external/wepoll/**.h",
 			"%{!wks.location}/vendor/libzmq/external/wepoll/**.c",
 		}
-		postbuildcommands {
-			"{COPYFILE} %[%{!wks.location}vendor/libzmq/include/*.h] %[%{!wks.location}Libs/include/]",
-			"{COPYFILE} %[%{!wks.location}premakeProj/libzmq/platform.hpp] %[%{!wks.location}Libs/include/]",
-		}
-
-	filter "system:not windows"
-		postbuildcommands {
-			"{COPYFILE} -n %{!wks.location}/vendor/libzmq/include/*.h %{!wks.location}/Libs/include/ 2>&1 || true",
-			"{COPYFILE} -n %{!wks.location}/premakeProj/libzmq/platform.hpp %{!wks.location}/Libs/include/ 2>&1 || true"
-		}

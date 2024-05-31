@@ -23,16 +23,3 @@ project "LibFMT"
 		"%{!wks.location}/vendor/fmt/src/format.cc",
 		"%{!wks.location}/vendor/fmt/src/os.cc"
 	}
-
-	filter "system:Windows"
-		defines { "_WINDOWS", "WIN32" }
-		postbuildcommands {
-			"{MKDIR} %{!wks.location}/Libs/include/fmt",
-			"{COPYFILE} %[%{!wks.location}vendor/fmt/include/fmt/*.h] %[%{!wks.location}Libs/include/fmt/]",
-		}
-
-	filter "system:not windows"
-		postbuildcommands {
-			"{MKDIR} %{!wks.location}/Libs/include/fmt",
-			"{COPYFILE} -n %{!wks.location}/vendor/fmt/include/fmt/*.h %{!wks.location}/Libs/include/fmt/ 2>&1 || true",
-		}
