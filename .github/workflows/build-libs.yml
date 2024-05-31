@@ -16,11 +16,11 @@ jobs:
       - name: Copy files
         run: |
           mkdir IncludesOut
-          cp -r vendor/argon2/include IncludesOut/
+          cp -r vendor/argon2/include/ IncludesOut/
           cp vendor/jpeg/*.h IncludesOut/
-          cp -r vendor/libzmq/include IncludesOut/
+          cp -r vendor/libzmq/include/ IncludesOut/
           cp premakeProj/libzmq/platform.hpp IncludesOut/
-          cp -r vendor/mariadb-connector-c/include IncludesOut/
+          cp -r vendor/mariadb-connector-c/include/ IncludesOut/
           cp premakeProj/mariadb-connector-c/*.h IncludesOut/
 
           mkdir IncludesOut/IL
@@ -36,6 +36,8 @@ jobs:
           mkdir IncludesOut/spdlog
           cp -r vendor/spdlog/include/spdlog/ IncludesOut/spdlog/
 
+          rm IncludesOut/*.in
+          rm IncludesOut/*.txt
       - uses: actions/upload-artifact@v4.3.3
         with:
           name: Includes
@@ -44,7 +46,7 @@ jobs:
   build-libs:
     needs: prepare-includes
     runs-on: ${{ matrix.os }}
-    name: Build libs on ${{ matrix.name }} ${{ matrix.platform }}
+    name: Build libs on ${{ matrix.name }} ${{ matrix.platform }} ${{ matrix.configuration }}
     strategy:
       matrix:
         include:
@@ -112,7 +114,7 @@ jobs:
         Tools\Windows\premake5 vs2022
 
     - name: Build Libs 
-      if: ${{ matrix.name == 'FreeBSD' && matrix.configuration == 'Debug' }}
+      if: ${{ matrix.target == 'FreeBSD' && matrix.configuration == 'Debug' }}
       uses: cross-platform-actions/action@v0.24.0
       with:
         operating_system: freebsd
@@ -123,9 +125,9 @@ jobs:
         run: |
             premake5 gmake2
             gmake config=debug -j4
-  
+
     - name: Build Libs 
-      if: ${{ matrix.name == 'FreeBSD' && matrix.configuration == 'Release' }}
+      if: ${{ matrix.target == 'FreeBSD' && matrix.configuration == 'Release' }}
       uses: cross-platform-actions/action@v0.24.0
       with:
         operating_system: freebsd
