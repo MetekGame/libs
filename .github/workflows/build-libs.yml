@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.6
+        name: Checkout
+        with:
+          submodules: true
+
       - name: Copy files
         run: |
           mkdir IncludesOut
