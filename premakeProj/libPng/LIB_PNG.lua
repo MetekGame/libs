@@ -3,9 +3,9 @@ project "LibPNG"
 	kind "StaticLib"
 	targetname "libpng"
 
-	targetdir "../Out/%{cfg.buildcfg}"
-	objdir "../Obj/%{prj.name}/%{cfg.buildcfg}"
-	location "../Out"
+	targetdir "../../Libs/lib/%{cfg.buildcfg}"
+	objdir "../../Obj/%{prj.name}/%{cfg.buildcfg}"
+	location "../../Out"
 
 	externalincludedirs {
 		"%{!wks.location}/vendor/zlib"
