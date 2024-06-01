@@ -28,8 +28,8 @@ project "LibPNG"
 	}
 
 	excludes {
-		"example.c",
-		"pngtest.c"
+		"%{!wks.location}/vendor/libpng/example.c",
+		"%{!wks.location}/vendor/libpng/pngtest.c"
 	}
 
 	defines { "_LIB" }

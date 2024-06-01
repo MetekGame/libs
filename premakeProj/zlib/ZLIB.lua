@@ -20,8 +20,7 @@ project "zlib"
 	}
 
 	excludes {
-		"example.c",
-		"pngtest.c"
+		"%{!wks.location}/vendor/zlib/example.c",
 	}
 
 	defines { "_LIB" }
