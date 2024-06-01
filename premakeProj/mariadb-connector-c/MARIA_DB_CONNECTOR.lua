@@ -10,7 +10,7 @@ project "LibMariaDB-Connector"
 
 	includedirs {
 		"%{!wks.location}/vendor/mariadb-connector-c/include",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib",
+		"%{!wks.location}/vendor/zlib",
 		"./"
 	}
 
@@ -54,21 +54,6 @@ project "LibMariaDB-Connector"
 		"%{!wks.location}/vendor/mariadb-connector-c/libmariadb/mariadb_dyncol.c",
 		"%{!wks.location}/vendor/mariadb-connector-c/libmariadb/mariadb_async.c",
 		"%{!wks.location}/vendor/mariadb-connector-c/libmariadb/ma_context.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/adler32.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/compress.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/crc32.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/deflate.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/gzclose.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/gzlib.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/gzread.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/gzwrite.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/infback.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/inffast.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/inflate.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/inftrees.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/trees.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/uncompr.c",
-		"%{!wks.location}/vendor/mariadb-connector-c/zlib/zutil.c",
 	}
 
 	defines { "HAVE_COMPRESS", "LIBMARIADB", "THREAD", "HAVE_TLS", 'SIZEOF_CHARP=4', 'MARIADB_MACHINE_TYPE="i386"' }

@@ -22,6 +22,8 @@ jobs:
           cp premakeProj/libzmq/platform.hpp IncludesOut/
           cp -r vendor/mariadb-connector-c/include/ IncludesOut/
           cp premakeProj/mariadb-connector-c/*.h IncludesOut/
+          cp vendor/zlib/*.h IncludesOut/
+          cp vendor/libpng/*.h IncludesOut/
 
           mkdir IncludesOut/IL
           cp -r vendor/DevIL/DevIL/include/IL IncludesOut/IL/

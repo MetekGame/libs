@@ -36,16 +36,3 @@ project "LibILU"
 	filter "system:Windows"
 		disablewarnings { "4996" }
 		defines { "WIN32", "_WINDOWS" }
-		postbuildcommands {
-			"{COPYFILE} %[%{!wks.location}vendor/DevIL/DevIL/include/*.h] %[%{!wks.location}Libs/include/]",
-			"{COPYFILE} %[%{!wks.location}vendor/DevIL/DevIL/include/devil_cpp_wrapper.hpp] %[%{!wks.location}Libs/include/]",
-			"{COPYFILE} %[%{!wks.location}premakeProj/DevIL/config.h] %[%{!wks.location}Libs/include/]"
-		}
-
-	filter "system:not windows"
-		postbuildcommands {
-			"{MKDIR} %{!wks.location}/Libs/include/IL",
-			"{COPYFILE} -n %{!wks.location}/vendor/DevIL/DevIL/include/IL/*.h %{!wks.location}/Libs/include/IL/ 2>&1 || true",
-			"{COPYFILE} -n %{!wks.location}/vendor/DevIL/DevIL/include/IL/devil_cpp_wrapper.hpp %{!wks.location}/Libs/include/IL/ 2>&1 || true",
-			"{COPYFILE} -n %{!wks.location}/premakeProj/DevIL/config.h %{!wks.location}/Libs/include/IL/ 2>&1 || true"
-		}
