@@ -11,6 +11,10 @@ project "LibPNG"
 		"%{!wks.location}/vendor/zlib"
 	}
 
+    includedirs {
+		"./"
+	}
+
 	vpaths {
 		["Headers/*"] = "*.h",
 		["Sources/*"] = "*.c",

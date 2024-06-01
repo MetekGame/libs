@@ -24,6 +24,8 @@ jobs:
           cp premakeProj/mariadb-connector-c/*.h IncludesOut/
           cp vendor/zlib/*.h IncludesOut/
           cp vendor/libpng/*.h IncludesOut/
+          cp premakeProj/libPng/pnglibconf.h IncludesOut/
+
 
           mkdir IncludesOut/IL
           cp -r vendor/DevIL/DevIL/include/IL IncludesOut/IL/
