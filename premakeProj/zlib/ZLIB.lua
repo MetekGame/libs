@@ -20,7 +20,8 @@ project "zlib"
 	}
 
 	excludes {
-		"example.c"
+		"example.c",
+		"pngtest.c"
 	}
 
 	defines { "_LIB" }
