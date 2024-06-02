@@ -11,7 +11,7 @@ project "LibPNG"
 		"%{!wks.location}/vendor/zlib"
 	}
 
-    includedirs {
+	includedirs {
 		"./"
 	}
 

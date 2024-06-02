@@ -3,10 +3,10 @@ workspace "Metek Game libs"
 	platforms { "Clang", "MSVC" }
 	architecture "x86"
 	staticruntime "on"
-	vectorextensions "AVX2"
+	vectorextensions "SSE2"
 
 	--Lib defines
-	defines { "ZMQ_STATIC" }
+	defines { "ZMQ_STATIC", "IL_STATIC_LIB" }
 	defines { "CRYPTOPP_DISABLE_MIXED_ASM", "CRYPTOPP_DISABLE_SHANI", "CRYPTOPP_DISABLE_AESNI" }
 
 	--postbuildcommands {
@@ -45,6 +45,7 @@ workspace "Metek Game libs"
 
 	filter { "system:bsd" }
 		isaextensions { "PCLMUL", "AES" }
+		vectorextensions "AVX2"
 		buildoptions { "-m32" }
 	
 	filter { "system:Windows" }
@@ -75,6 +76,7 @@ workspace "Metek Game libs"
 		include "/premakeProj/libzmq/LibZeroMQ.lua"
 		include "/premakeProj/zlib/ZLIB.lua"
 		include "/premakeProj/libPng/LIB_PNG.lua"
+		--include "/premakeProj/cryptopp/CRYPTO_PP.lua"
 
 	group "External/DevIL"
 		include "/premakeProj/DevIL/IL.lua"

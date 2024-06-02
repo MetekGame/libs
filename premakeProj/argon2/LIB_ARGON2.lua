@@ -30,9 +30,6 @@ project "LibArgon2"
 		"%{!wks.location}/vendor/argon2/src/run.c"
 	}
 
-	filter "system:Windows"
-		disablewarnings { "4996" }
-
 	filter "system:bsd"
 		defines {
 			"A2_VISCTL=1",
