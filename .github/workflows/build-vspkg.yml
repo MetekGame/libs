@@ -72,7 +72,7 @@ jobs:
        ./vcpkg.exe install cryptopp:x86-windows-static fmt:x86-windows-static zlib:x86-windows-static lzo:x86-windows-static libjpeg-turbo:x86-windows-static libpng:x86-windows-static devil:x86-windows-static libwebp:x86-windows-static --x-install-root=../Libs
 
     - name: Build Libs 
-      if: ${{ matrix.target == 'FreeBSD' && matrix.configuration == 'Debug' }}
+      if: ${{ matrix.target == 'FreeBSD' }}
       uses: cross-platform-actions/action@v0.25.0
       with:
         operating_system: freebsd
@@ -82,7 +82,8 @@ jobs:
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.3/freebsd-13.2-x86-64.qcow2
         run: |
             cd vcpkg
-            ./bootstrap-vcpkg.bat -disableMetrics
+            chmod +x bootstrap-vcpkg.sh
+            ./bootstrap-vcpkg.sh -disableMetrics
             ./vcpkg.exe install cryptopp:x86-freebsd-static fmt:x86-freebsd-static zlib:x86-freebsd-static lzo:x86-freebsd-static libjpeg-turbo:x86-freebsd-static libpng:x86-freebsd-static devil:x86-freebsd-static libwebp:x86-freebsd-static --x-install-root=../Libs
 
     - uses: actions/upload-artifact@v4.3.3
