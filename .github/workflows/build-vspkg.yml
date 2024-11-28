@@ -81,7 +81,7 @@ jobs:
         shell: bash
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.3/freebsd-13.2-x86-64.qcow2
         run: |
-            sudo pkg install --yes zip unzip cmake ninja
+            sudo pkg install --yes zip unzip cmake ninja git
             cd vcpkg
             chmod +x bootstrap-vcpkg.sh
             ./bootstrap-vcpkg.sh -disableMetrics
