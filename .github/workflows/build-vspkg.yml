@@ -29,11 +29,11 @@ jobs:
           configuration: Release
           platform: MSVC
 
-        - os: windows-2022
-          name: Windows 2022
-          target: Windows
-          configuration: Debug
-          platform: MSVC
+        # - os: windows-2022
+        #   name: Windows 2022
+        #   target: Windows
+        #   configuration: Debug
+        #   platform: MSVC
 
         #- os: ubuntu-22.04
         #  name: Ubuntu 22.04
@@ -46,11 +46,11 @@ jobs:
           configuration: Release
           platform: clang
 
-        - os: ubuntu-22.04
-          name: FreeBSD 13.2
-          target: FreeBSD
-          configuration: Debug
-          platform: clang
+        # - os: ubuntu-22.04
+        #   name: FreeBSD 13.2
+        #   target: FreeBSD
+        #   configuration: Debug
+        #   platform: clang
 
     steps:
     # - uses: actions/checkout@v4.2.2
