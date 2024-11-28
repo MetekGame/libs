@@ -69,7 +69,7 @@ jobs:
       run: |
        cd vcpkg
        ./bootstrap-vcpkg.bat -disableMetrics
-       ./vcpkg.exe install cryptopp:x86-windows-static fmt:x86-windows-static zlib:x86-windows-static lzo:x86-windows-static libjpeg-turbo:x86-windows-static libpng:x86-windows-static devil:x86-windows-static libwebp:x86-windows-static --x-install-root=../Libs
+       ./vcpkg.exe install cryptopp:x86-windows-static fmt:x86-windows-static zlib:x86-windows-static lzo:x86-windows-static libjpeg-turbo:x86-windows-static libpng:x86-windows-static devil[core,lcms,libjpeg,libpng,openexr,tiff]:x86-windows-static libwebp:x86-windows-static --x-install-root=../Libs
 
     - name: Build Libs 
       if: ${{ matrix.target == 'FreeBSD' }}
@@ -85,7 +85,7 @@ jobs:
             cd vcpkg
             chmod +x bootstrap-vcpkg.sh
             ./bootstrap-vcpkg.sh -disableMetrics
-            ./vcpkg install cryptopp:x86-freebsd fmt:x86-freebsd zlib:x86-freebsd lzo:x86-freebsd libjpeg-turbo:x86-freebsd libpng:x86-freebsd devil:x86-freebsd libwebp:x86-freebsd --x-install-root=../Libs
+            ./vcpkg install cryptopp:x86-freebsd fmt:x86-freebsd zlib:x86-freebsd lzo:x86-freebsd libjpeg-turbo:x86-freebsd libpng:x86-freebsd devil[core,lcms,libjpeg,libpng,openexr,tiff]:x86-freebsd libwebp:x86-freebsd --x-install-root=../Libs
 
     - uses: actions/upload-artifact@v4.3.3
       with:
