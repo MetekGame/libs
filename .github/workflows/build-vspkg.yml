@@ -11,46 +11,17 @@ jobs:
     strategy:
       matrix:
         include:
-        # - os: windows-2022
-        #   name: Windows 2022
-        #   target: Windows
-        #   configuration: Release
-        #   platform: Clang
-
-        # - os: windows-2022
-        #   name: Windows 2022
-        #   target: Windows
-        #   configuration: Debug
-        #   platform: Clang
-
         - os: windows-2022
           name: Windows 2022
           target: Windows
           configuration: Release
           platform: MSVC
 
-        # - os: windows-2022
-        #   name: Windows 2022
-        #   target: Windows
-        #   configuration: Debug
-        #   platform: MSVC
-
-        #- os: ubuntu-22.04
-        #  name: Ubuntu 22.04
-        #- os: macos-12
-        #  name: macOS 12
-        #  target: macOS
         - os: ubuntu-22.04
           name: FreeBSD 13.2
           target: FreeBSD
           configuration: Release
           platform: clang
-
-        # - os: ubuntu-22.04
-        #   name: FreeBSD 13.2
-        #   target: FreeBSD
-        #   configuration: Debug
-        #   platform: clang
 
     steps:
     # - uses: actions/checkout@v4.2.2
@@ -64,14 +35,14 @@ jobs:
         repository: Microsoft/vcpkg
         path: vcpkg
 
-    - name: Install packages
+    - name: Build Libs ${{ matrix.target }}
       if: matrix.target == 'Windows'
       run: |
        cd vcpkg
        ./bootstrap-vcpkg.bat -disableMetrics
-       ./vcpkg.exe install cryptopp:x86-windows-static fmt:x86-windows-static zlib:x86-windows-static lzo:x86-windows-static libjpeg-turbo:x86-windows-static libpng:x86-windows-static devil[core,lcms,libjpeg,libpng,openexr,tiff]:x86-windows-static libwebp:x86-windows-static --x-install-root=../Libs
+       ./vcpkg.exe install cryptopp:x86-windows-static fmt:x86-windows-static zlib:x86-windows-static lzo:x86-windows-static libjpeg-turbo:x86-windows-static libpng:x86-windows-static devil[core,libjpeg,libpng,tiff]:x86-windows-static libwebp:x86-windows-static --x-install-root=../Libs
 
-    - name: Build Libs 
+    - name: Build Libs ${{ matrix.target }}
       if: ${{ matrix.target == 'FreeBSD' }}
       uses: cross-platform-actions/action@v0.25.0
       with:
@@ -81,11 +52,11 @@ jobs:
         shell: bash
         image_url: https://github.com/MetekGame/freebsd-builder/releases/download/v0.0.3/freebsd-13.2-x86-64.qcow2
         run: |
-            sudo pkg install --yes zip unzip cmake ninja git devel/pkgconf
+            sudo pkg install --yes zip unzip cmake ninja git devel/pkgconf llvm-devel
             cd vcpkg
             chmod +x bootstrap-vcpkg.sh
             ./bootstrap-vcpkg.sh -disableMetrics
-            ./vcpkg install cryptopp:x86-freebsd fmt:x86-freebsd zlib:x86-freebsd lzo:x86-freebsd libjpeg-turbo:x86-freebsd libpng:x86-freebsd devil[core,lcms,libjpeg,libpng,openexr,tiff]:x86-freebsd libwebp:x86-freebsd --x-install-root=../Libs
+            ./vcpkg install cryptopp:x86-freebsd fmt:x86-freebsd zlib:x86-freebsd lzo:x86-freebsd libjpeg-turbo:x86-freebsd libpng:x86-freebsd devil[core,libjpeg,libpng,tiff]:x86-freebsd libwebp:x86-freebsd --x-install-root=../Libs
 
     - uses: actions/upload-artifact@v4.3.3
       with:
